@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="3c334e0b-669f-464c-a04a-3707ad919ec7" name="https://github.com/Fineteklabs/ISMS" url="https://github.com/Fineteklabs/ISMS">
+        <fileTransfer port="0" accessType="LOCAL" />
+      </webServer>
+    </option>
+  </component>
+</project>
