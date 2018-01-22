@@ -247,6 +247,10 @@ public class addLevel extends GridPane {
         this.add(levelIdField, 2, 1);
         this.add(levelNameField, 2, 2);
         this.add(levelDescriptionField, 2, 3);
+        this.add(currentTermField, 2, 4);
+        this.add(passMarksField, 2, 5);
+        this.add(feeStructureField, 2, 6);
+        this.add(supervisorField, 2, 7);
 
 
         return this;
