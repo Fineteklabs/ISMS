@@ -20,6 +20,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import levels.level;
+import levels.level_view;
 import org.apache.log4j.BasicConfigurator;
 import parents.parent;
 import parents.parent_view;
@@ -95,12 +97,14 @@ public class schoolApp extends Application {
         school myschool = new school();
         student momanyi = new student();
         parent myparent = new parent();
+        level mylevels = new level();
         student_view students = new student_view(momanyi, "STUDENTS CENTER");
+        level_view levels = new level_view(mylevels, "CLASSES");
         school_view views = new school_view(myschool, "SCHOOL INFORMATION");
         parent_view parents = new parent_view(myparent, "PARENT CENTER");
         views.closableProperty().set(false);
 
-        tabs.getTabs().addAll(views, students, parents);
+        tabs.getTabs().addAll(views, students, parents, levels);
         BorderPane border = new BorderPane();
         border.setCenter(tabs);
 

@@ -234,6 +234,11 @@ public class addLevel extends GridPane {
     };
 
 
+    public addLevel() {
+        layoutField();
+    }
+
+
     public GridPane layoutField() {
 
         this.add(levelId, 1, 1);
