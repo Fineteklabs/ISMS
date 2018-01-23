@@ -11,12 +11,12 @@ import javafx.scene.layout.GridPane;
 public class addLevel extends GridPane {
     Label levelId = new Label(" level id");
     Label levelName = new Label(" level name");
-    Label levelDescription = new Label("description");
+    Label levelDescription = new Label(" level description");
     Label supervisorId = new Label(" supervisor id");
-    Label currentTermId = new Label(" currentTerm");
-    Label currentFeeStructure = new Label("  Fee structure");
-    Label maxPopulation = new Label(" maximmum population");
-    Label levelFees = new Label(" fees");
+    Label currentTermId = new Label(" current session or term");
+    Label currentFeeStructure = new Label(" level fee structure");
+    Label maxPopulation = new Label(" maximmum  level  population");
+    Label levelFees = new Label("  total academic fees");
     Label levelPassMarks = new Label("pass marks");
 
 
@@ -210,7 +210,7 @@ public class addLevel extends GridPane {
         }
     };
 
-    JFXTextField maxPopulatioFieldn = new JFXTextField() {
+    JFXTextField maxPopulatioField = new JFXTextField() {
         final int maxChars = 50;
         final String restrictTo = "[0-9,A-Z ]";
 
@@ -240,10 +240,12 @@ public class addLevel extends GridPane {
 
 
     public GridPane layoutField() {
+        this.setHgap(20);
+        this.setVgap(15);
 
         this.add(levelId, 1, 1);
         this.add(levelName, 1, 2);
-        this.add(levelDescription, 1, 3);
+        this.add(levelDescription, 3, 2);
         this.add(currentTermId, 1, 4);
         this.add(levelPassMarks, 1, 5);
         this.add(levelFees, 1, 6);
@@ -251,7 +253,7 @@ public class addLevel extends GridPane {
 
         this.add(levelIdField, 2, 1);
         this.add(levelNameField, 2, 2);
-        this.add(levelDescriptionField, 2, 3);
+        this.add(levelDescriptionField, 4, 2);
         this.add(currentTermField, 2, 4);
         this.add(passMarksField, 2, 5);
         this.add(feeStructureField, 2, 6);
