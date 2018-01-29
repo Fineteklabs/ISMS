@@ -296,8 +296,13 @@ public class student {
 
     }
 
+    public String toString() {
+        return "[name:" + firstName.get() + " " + lastName.get() +
+                ", class:" + currentClassId.get() +
+                ", clearance" + clearanceDate.get();
+
+    }
     public enum AgeCategory {
         BABY, CHILD, TEEN, ADULT, SENIOR, UNKNOWN
     }
-
 }

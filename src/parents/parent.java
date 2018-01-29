@@ -214,6 +214,13 @@ public class parent {
         return nationalIdentifiaction;
     }
 
+    public String toString() {
+        return "[name:" + firstName.get() + " " + lastName.get() +
+                ", phone:" + mobileNumber.get() +
+                ", home" + homeAdress.get();
+
+    }
+
     public enum Roles {
         GUARDIAN, PARENT, SPONSOR, SIBLING, OFFICIAL,
     }

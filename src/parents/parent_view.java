@@ -25,6 +25,7 @@ public class parent_view extends Tab {
 
     public parent_view(parent momanyi, String title) {
         this.momanyi = momanyi;
+        //  parentList parentList= new parentList();
 //        designs();
         init();
         this.setText(title);
@@ -43,7 +44,7 @@ public class parent_view extends Tab {
 
         innerborder = new BorderPane();
         leftarea = new VBox();
-
+        leftarea.getChildren().addAll(new allparents());
         innerborder.setCenter(leftarea);
         centraldata = new BorderPane();
         centraldata.setCenter(addparents);

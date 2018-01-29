@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import eu.hansolo.tilesfx.skins.LeaderBoardItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="454.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/8">
+    <top>
+        <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER"/>
+    </top>
+    <bottom>
+        <TabPane prefHeight="170.0" prefWidth="656.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="children">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                    </content>
+                </Tab>
+                <Tab text="Transactions">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </bottom>
+    <center>
+        <GridPane hgap="10.0" vgap="10.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+            </rowConstraints>
+            <children>
+                <LeaderBoardItem layoutX="10.0" layoutY="10.0" prefHeight="37.0" prefWidth="240.0"
+                                 GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+                <LeaderBoardItem layoutX="10.0" layoutY="71.0" prefHeight="53.0" prefWidth="216.0"/>
+                <SimpleMetroArcGauge prefHeight="100.0" prefWidth="202.0" GridPane.columnIndex="2"/>
+            </children>
+        </GridPane>
+    </center>
+</BorderPane>
