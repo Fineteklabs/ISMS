@@ -10,15 +10,9 @@ import javafx.beans.property.StringProperty;
  */
 public class subjects {
     private final StringProperty subjectId = new SimpleStringProperty(this, "subjectId", null);
-
     private final StringProperty subjectName = new SimpleStringProperty(this, "subjectId", null);
-
     private final StringProperty subjectDescription = new SimpleStringProperty(this, "subjectDescription", null);
-
-
     private final StringProperty subjectDepartment = new SimpleStringProperty(this, "subjectDepartment", null);
-
-
     private final DoubleProperty subjectPassMark = new SimpleDoubleProperty(this, " subjectPassMark", 0.0);
 
 
