@@ -1,7 +1,7 @@
 package subjects;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -13,7 +13,7 @@ public class subjects {
     private final StringProperty subjectName = new SimpleStringProperty(this, "subjectId", null);
     private final StringProperty subjectDescription = new SimpleStringProperty(this, "subjectDescription", null);
     private final StringProperty subjectDepartment = new SimpleStringProperty(this, "subjectDepartment", null);
-    private final DoubleProperty subjectPassMark = new SimpleDoubleProperty(this, " subjectPassMark", 0.0);
+    private final IntegerProperty subjectPassMark = new SimpleIntegerProperty(this, " subjectPassMark", 0);
 
 
     public String getSubjectId() {
@@ -64,15 +64,15 @@ public class subjects {
         return subjectDepartment;
     }
 
-    public double getSubjectPassMark() {
+    public int getSubjectPassMark() {
         return subjectPassMark.get();
     }
 
-    public void setSubjectPassMark(double subjectPassMark) {
+    public void setSubjectPassMark(int subjectPassMark) {
         this.subjectPassMark.set(subjectPassMark);
     }
 
-    public DoubleProperty subjectPassMarkProperty() {
+    public IntegerProperty subjectPassMarkProperty() {
         return subjectPassMark;
     }
 

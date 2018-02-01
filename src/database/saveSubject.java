@@ -9,10 +9,21 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class saveSubject {
     private static Lock lock = new ReentrantLock();
-    private String exam_id;
-    private String exam_name;
-    private String level_id;
-    private String current_term;
-    private LocalDate start_date;
-    private LocalDate end_date;
+    private String subject_id;
+    private String subject_name;
+    private String subject_description;
+    private String department_id;
+    private LocalDate creation_date;
+    private int subject_passmark;
+
+
+    public saveSubject(subjects.subjects mysubjects) {
+        this.subject_id = mysubjects.getSubjectId();
+        this.subject_name = mysubjects.getSubjectName();
+        this.subject_description = mysubjects.getSubjectDescription();
+        this.department_id = mysubjects.getSubjectDepartment();
+        this.creation_date = LocalDate.now();
+        this.subject_passmark = mysubjects.getSubjectPassMark();
+    }
+
 }
