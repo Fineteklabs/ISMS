@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Created by FINETEKLABS on 12/6/2017.
@@ -101,7 +102,37 @@ public class exams {
         return currentTerm;
     }
 
-    public void delete(exams mock) {
+
+    public Boolean isvalidExam(exams exam, List<String> errorList) {
+        boolean isValid = true;
+
+        String name = exam.getExam_name();
+        if (name == null || name.trim().length() <= 5) {
+            errorList.add("exam  name must contain more than 5 characters");
+            isValid = false;
+        }
+        String examId = exam.getExamId();
+
+        if (examId == null || examId.trim().length() < 3) {
+            errorList.add(" your exam does not have a valid exam id");
+
+        }
+
+
+        return isValid;
+    }
+
+
+    public void delete(exams exam, List<String> errorList) {
+
+    }
+
+
+    public void update(exams exam, List<String> errorList) {
+
+    }
+
+    public void save(exams exam) {
 
     }
 

@@ -1,33 +1,65 @@
 package levels;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 /**
  * Created by FINETEKLABS on 12/3/2017.
  */
 public class level {
-    private IntegerProperty levelId;
-    private StringProperty levelName;
-    private StringProperty levelDescription;
-    private StringProperty supervisorId;
-    private StringProperty currentTermId;
-    private StringProperty levelFeeStructureId;
-    private StringProperty levelMaxPopulation;
-    private IntegerProperty levelPassMarks;
-    private DoubleProperty levelFees;
 
 
-    public int getLevelId() {
+    private final StringProperty levelId = new SimpleStringProperty(this, "levelId", null);
+    private final StringProperty levelName = new SimpleStringProperty(this, "levelName", null);
+    private final StringProperty levelDescription = new SimpleStringProperty(this, "levelDescription", null);
+    private final StringProperty supervisorId = new SimpleStringProperty(this, "supervisorId", null);
+    private final StringProperty currentTermId = new SimpleStringProperty(this, "currentTermId", null);
+    private final StringProperty levelFeeStructureId = new SimpleStringProperty(this, "levelFeeStructureId", null);
+    private final IntegerProperty levelMaxPopulation = new SimpleIntegerProperty(this, "levelMaxPopulation", 0);
+    //private final StringProperty levelPassMarks = new SimpleStringProperty(this, "supervisorId", null);
+    private final DoubleProperty levelFees = new SimpleDoubleProperty(this, "levelFees", 0.0);
+    private final IntegerProperty levelPassMarks = new SimpleIntegerProperty(this, "levelPassMarks", 0);
+
+
+    public level() {
+
+    }
+
+    public level(String levelId, String levelName, String levelDescription, String supervisorId, String currentTermId, String levelFeeStructureId, Integer levelMaxPopulation, Double levelFees, Integer levelPassMark) {
+        this.currentTermId.set(currentTermId);
+        this.levelId.set(levelId);
+        this.levelName.set(levelName);
+        this.levelDescription.set(levelDescription);
+        this.supervisorId.set(supervisorId);
+        this.levelFeeStructureId.set(levelFeeStructureId);
+        this.levelFees.set(levelFees);
+        this.levelPassMarks.set(levelPassMark);
+        this.levelMaxPopulation.set(levelMaxPopulation);
+
+
+    }
+
+
+    public int getLevelMaxPopulation() {
+        return levelMaxPopulation.get();
+    }
+
+    public void setLevelMaxPopulation(int levelMaxPopulation) {
+        this.levelMaxPopulation.set(levelMaxPopulation);
+    }
+
+    public IntegerProperty levelMaxPopulationProperty() {
+        return levelMaxPopulation;
+    }
+
+    public String getLevelId() {
         return levelId.get();
     }
 
-    public void setLevelId(int levelId) {
+    public void setLevelId(String levelId) {
         this.levelId.set(levelId);
     }
 
-    public IntegerProperty levelIdProperty() {
+    public StringProperty levelIdProperty() {
         return levelId;
     }
 
@@ -91,17 +123,7 @@ public class level {
         return levelFeeStructureId;
     }
 
-    public String getLevelMaxPopulation() {
-        return levelMaxPopulation.get();
-    }
 
-    public void setLevelMaxPopulation(String levelMaxPopulation) {
-        this.levelMaxPopulation.set(levelMaxPopulation);
-    }
-
-    public StringProperty levelMaxPopulationProperty() {
-        return levelMaxPopulation;
-    }
 
     public int getLevelPassMarks() {
         return levelPassMarks.get();
