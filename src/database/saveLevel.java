@@ -53,7 +53,7 @@ public class saveLevel implements Runnable {
             conn = currentDb.sqlite_connect();
             lock.lock();
             Thread.sleep(1000);
-            String sql = "INSERT INTO levels  (   levelId, levelName,levelDescription, supervisorId,  currentTermId,levelFeeStructureId,levelMaxPopulation,levelPassMarks,levelFees,created) VALUES(?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO levels  (   levelId, levelName,levelDescription, supervisorId,  currentTermId,levelFeeStructureId,levelMaxPopulation,levelPassMarks,levelFees,created) VALUES(?,?,?,?,?,?,?,?,?,?)";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, levelId);
@@ -66,7 +66,7 @@ public class saveLevel implements Runnable {
             pstmt.setInt(8, levelPassMarks);
             pstmt.setDouble(9, levelFees);
 
-            pstmt.setDate(6, java.sql.Date.valueOf(created_at));
+            pstmt.setDate(10, java.sql.Date.valueOf(created_at));
 
 
             pstmt.executeUpdate();
