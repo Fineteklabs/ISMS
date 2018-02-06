@@ -1,6 +1,8 @@
 package terms;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.time.LocalDate;
@@ -9,14 +11,24 @@ import java.time.LocalDate;
  * Created by FINETEKLABS on 12/4/2017.
  */
 public class term {
-    private StringProperty termId;
-    private StringProperty termName;
-    private StringProperty activeStatus;
-    private ObjectProperty<LocalDate> openingDate;
-    private ObjectProperty<LocalDate> closingDate;
-    private StringProperty timetablesId;
-    private StringProperty termActivitiesId;
+    private StringProperty termId = new SimpleStringProperty(this, " termId", null);
+    private StringProperty termName = new SimpleStringProperty(this, " termName", null);
+    private StringProperty activeStatus = new SimpleStringProperty(this, " activeStatus", null);
+    ;
+    private ObjectProperty<LocalDate> openingDate = new SimpleObjectProperty<>(this, "openingDate", LocalDate.now());
+    private ObjectProperty<LocalDate> closingDate = new SimpleObjectProperty<>(this, "clsoingDate", LocalDate.now().plusDays(60));
+    private StringProperty timetablesId = new SimpleStringProperty(this, " timetablesId", null);
+    private StringProperty termActivitiesId = new SimpleStringProperty(this, " termActivitiesId", null);
 
+
+    public term() {
+
+    }
+
+
+    public term(String termId, String termName, LocalDate openingDate, LocalDate closingDate, String timetableId, String termActivitiesField) {
+
+    }
 
     public String getTermId() {
         return termId.get();
