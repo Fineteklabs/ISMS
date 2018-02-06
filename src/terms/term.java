@@ -26,7 +26,14 @@ public class term {
     }
 
 
-    public term(String termId, String termName, LocalDate openingDate, LocalDate closingDate, String timetableId, String termActivitiesField) {
+    public term(String termId, String termName, LocalDate openingDate, LocalDate closingDate, String timetableId, String termActivitiesField, String activeStatus) {
+        this.activeStatus.set(activeStatus);
+        this.termId.set(termId);
+        this.termName.set(termName);
+        this.openingDate.set(openingDate);
+        this.closingDate.set(closingDate);
+        this.timetablesId.set(timetableId);
+        this.termActivitiesId.set(termActivitiesField);
 
     }
 
@@ -112,6 +119,11 @@ public class term {
 
     public StringProperty termActivitiesIdProperty() {
         return termActivitiesId;
+    }
+
+
+    public void saveTerm() {
+
     }
 }
 //extend  term
