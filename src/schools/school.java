@@ -34,7 +34,7 @@ public class school {
     private final StringProperty activeState = new SimpleStringProperty(this, "activeState", null);
 
     public school() {
-        this(1, null, null, null, null, null, null, null, null, null, null, null);
+//        this(1, null, null, null, null, null, null, null, null, null, null, null);
     }
 
 
