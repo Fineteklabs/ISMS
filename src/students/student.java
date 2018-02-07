@@ -217,7 +217,7 @@ public class student {
         if (bdate == null) {
             return true;
         }
-// Birth date cannot be in the future
+
         if (bdate.isAfter(LocalDate.now())) {
             errorList.add("Birth date must not be in future.");
             return false;

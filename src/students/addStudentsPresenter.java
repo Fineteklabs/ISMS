@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class addStudentsPresenter {
     private student momanyi;
-    //   private schoolPresenter myschoolView;
+
 
     private student_view myView;
 

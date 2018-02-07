@@ -111,8 +111,9 @@ public class schoolApp extends Application {
         border.setTop(TopMenu());
         scene = new Scene(border, 700, 600);
 
+        scene.getStylesheets().add(schoolApp.class.getResource("/resources/css/jfoenix-components.css").toExternalForm());
 
-        //   schoolPresenter present = new schoolPresenter(myschool,views);
+
         BasicConfigurator.configure();
 //the stock tab
 

@@ -377,17 +377,24 @@ public class school_view extends Tab {
 
 
         HBox buttonBox = new HBox(saveButton, closeButton);
-        saveButton.setMaxWidth(Double.MAX_VALUE);
-        closeButton.setMaxWidth(Double.MAX_VALUE);
+        buttonBox.setSpacing(10);
+        saveButton.setMaxWidth(60);
 
+        saveButton.getStyleClass().add("button-raised");
+        closeButton.setMaxWidth(60);
+        closeButton.getStyleClass().add("button-raised");
 
+        saveButton.setOnAction(e -> {
+
+        });
         myGrid.add(buttonBox, 4, 6, 5, 5);
         return myGrid;
+
 
     }
 
     public void bindFieldsToModel() {
-        schoolIdField.textProperty().bind(myschool.schoolIdProperty().asString());
+        //   schoolIdField.textProperty().bind(myschool.schoolIdProperty().asString());
         schoolNameField.textProperty().bindBidirectional(myschool.schoolNameProperty());
         locationField.textProperty().bindBidirectional(myschool.locationProperty());
     }
@@ -535,6 +542,80 @@ public class school_view extends Tab {
 
         return isValid;
 
+    }
+
+
+    public boolean isValidSchool(int schoolId, String schoolName, String centerCode, String academicYear, String location, String address, String mobile,
+                                 String telephone, String website, String email, String currentTerm, String activeState, List<String> errorList) {
+
+        schoolId = Integer.parseInt(schoolIdField.getText());
+        schoolName = schoolNameField.getText().toUpperCase().trim();
+        centerCode = centerCodeField.getText().trim().toUpperCase();
+        academicYear = academicYearField.getSelectionModel().getSelectedItem().toString();
+        address = addressField.getText().toUpperCase().trim();
+        location = locationField.getText().trim().toUpperCase();
+        telephone = telephoneField.getText().toUpperCase().trim();
+        website = websiteField.getText().toUpperCase().trim();
+        email = emailField.getText().trim().toUpperCase();
+        currentTerm = currentTermField.getText().trim().toUpperCase();
+        activeState = getActiveStates();
+
+
+        return true;
+    }
+
+    public String getActiveStates() {
+        String active;
+        if (activeButton.isSelected()) {
+            active = "ACTIVE";
+        } else {
+            active = "CLOSED";
+
+        }
+        return active;
+    }
+
+    public school validSchool() {
+        school maseno;
+        Integer schoolId;
+        String schoolName;
+        String centerCode;
+        String academicYear;
+        String location;
+        String address;
+        String mobile;
+        String telephone;
+        String website;
+        String email;
+        String currentTerm;
+        String activeState;
+
+        if (schoolIdField.getText().isEmpty() || schoolIdField.getText() == null) {
+
+        } else {
+            schoolId = Integer.parseInt(schoolIdField.getText().trim().toUpperCase());
+        }
+
+
+        if (schoolNameField.getText().isEmpty() || schoolNameField.getText() == null) {
+
+        } else {
+            schoolName = schoolNameField.getText();
+        }
+
+        if (centerCodeField.getText().isEmpty() || centerCodeField.getText() == null) {
+
+        } else {
+            centerCode = centerCodeField.getText().trim().toUpperCase();
+        }
+
+        if (academicYearField.getSelectionModel().getSelectedItem().toString().isEmpty() || academicYearField.getSelectionModel().getSelectedItem().toString() == null) {
+
+        } else {
+            academicYear = academicYearField.getSelectionModel().getSelectedItem().toString();
+        }
+
+        return maseno
     }
 
 }
