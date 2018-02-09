@@ -615,6 +615,36 @@ public class school_view extends Tab {
             academicYear = academicYearField.getSelectionModel().getSelectedItem().toString();
         }
 
+        if (locationField.getText().isEmpty() || locationField.getText() == null) {
+
+        } else {
+            location = locationField.getText().trim().toUpperCase();
+        }
+        if (addressField.getText().isEmpty() || addressField.getText().trim() == null) {
+
+        } else {
+            address = addressField.getText().toUpperCase().trim();
+        }
+        if (telephoneField.getText().isEmpty() || telephoneField.getText() == null) {
+
+        } else {
+            telephone = telephoneField.getText();
+        }
+
+        if (mobileField.getText().isEmpty() || mobileField.getText() == null) {
+
+        } else {
+            mobile = mobileField.getText().toUpperCase().trim();
+        }
+
+        if (websiteField.getText().isEmpty() || websiteField.getText() == null) {
+        } else {
+            website = websiteField.getText().trim().toUpperCase();
+
+        }
+
+
+
         return maseno
     }
 
