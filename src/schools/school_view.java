@@ -642,7 +642,16 @@ public class school_view extends Tab {
             website = websiteField.getText().trim().toUpperCase();
 
         }
+        if (emailField.getText().isEmpty() || emailField.getText() == null) {
 
+        } else {
+            email = emailField.getText().trim().toUpperCase();
+        }
+        if (currentTermField.getText().isEmpty() || currentTermField.getText() == null) {
+
+        } else {
+            currentTerm = currentTermField.getText().toUpperCase().trim();
+        }
 
 
         return maseno
