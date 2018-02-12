@@ -30,6 +30,8 @@ public class landingPage {
     public static LeaderBoardItem leaderBoardItem3;
     public static LeaderBoardItem leaderBoardItem4;
     public static Tile leaderBoardTile;
+    public static Tile levelsCategory;
+
     private static Gauge members;
     private static Gauge empGauge;
     private static Gauge outloans;
@@ -365,6 +367,20 @@ public class landingPage {
                 .graphic(addTerm())
                 .build();
         // Creating Tiles
+
+        levelsCategory = TileBuilder.create()
+                .skinType(Tile.SkinType.LEADER_BOARD)
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .title("STUDENT POPULATION")
+                .text("Whatever text")
+                .leaderBoardItems(leaderBoardItem1, leaderBoardItem2, leaderBoardItem3, leaderBoardItem4)
+                .graphic(addTerm())
+                .build();
+        // Creating Tiles
+
+
+
+
         percentageTile = TileBuilder.create()
                 .skinType(Tile.SkinType.STOCK)
                 .prefSize(TILE_WIDTH, TILE_HEIGHT)
@@ -386,7 +402,7 @@ public class landingPage {
         newPane.setAlignment(Pos.CENTER);
         newPane.setHgap(20);
         newPane.setVgap(20);
-//newPane.setOrientation(Orientation.HORIZONTAL);
+//newPane.setOrientation(Orientation.HORIZONTAL);school
         return newPane;
     }
 
@@ -410,5 +426,12 @@ public class landingPage {
         term.setPadding(new Insets(10, 0, 5, 2));
         //term.setPadding(new Insets(5,5,5,5));
         return term;
+    }
+
+
+    public static VBox addLevel() {
+        VBox level = new VBox();
+        Label levelName = new Label();
+        return level;
     }
 }
