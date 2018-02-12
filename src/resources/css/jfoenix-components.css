@@ -120,6 +120,16 @@
     -fx-text-fill: WHITE;
 }
 
+.button-normal {
+    /*  -fx-padding: 0.7em 0.57em; */
+    -fx-font-size: 9px;
+
+    -fx-background-color: #00c853;;
+    -fx-pref-width: 70;
+    -fx-background-radius: 20;
+    -fx-text-fill: WHITE;
+    -fx-border-radius: 20;
+}
 /* The main scrollbar **track** CSS class  */
 .mylistview .scroll-bar:horizontal .track,
 .mylistview .scroll-bar:vertical .track {

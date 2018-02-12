@@ -109,7 +109,7 @@ public class schoolApp extends Application {
         border.setCenter(tabs);
 
         border.setTop(TopMenu());
-        scene = new Scene(border, 700, 600);
+        scene = new Scene(border, 900, 650);
 
         scene.getStylesheets().add(schoolApp.class.getResource("/resources/css/jfoenix-components.css").toExternalForm());
 

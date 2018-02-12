@@ -52,6 +52,8 @@ public class school_view extends Tab {
     //Buttons
     JFXButton saveButton = new JFXButton("save");
     JFXButton closeButton = new JFXButton("close");
+    JFXButton nextButton = new JFXButton("close and next");
+
     private BorderPane centraldata;
     private VBox leftarea;
     private GridPane myGrid;
@@ -376,7 +378,7 @@ public class school_view extends Tab {
         // myGrid.add(add,5,3);
 
 
-        HBox buttonBox = new HBox(saveButton, closeButton);
+        HBox buttonBox = new HBox(saveButton, closeButton, nextButton);
         buttonBox.setSpacing(10);
         saveButton.setMaxWidth(60);
 
@@ -384,8 +386,22 @@ public class school_view extends Tab {
         closeButton.setMaxWidth(60);
         closeButton.getStyleClass().add("button-raised");
 
-        saveButton.setOnAction(e -> {
+        nextButton.getStyleClass().add("button-raised");
 
+
+        saveButton.setOnAction(e -> {
+            validSchool();
+            validSchool().save();
+            reset();
+        });
+
+
+        nextButton.setOnAction(e -> {
+//            validSchool();
+//            validSchool().save();
+//            reset();
+            this.contentProperty().setValue(null);
+            this.setContent(landingPage.immediatePane());
         });
         myGrid.add(buttonBox, 4, 6, 5, 5);
         return myGrid;
@@ -396,7 +412,7 @@ public class school_view extends Tab {
     public void bindFieldsToModel() {
         //   schoolIdField.textProperty().bind(myschool.schoolIdProperty().asString());
         schoolNameField.textProperty().bindBidirectional(myschool.schoolNameProperty());
-        locationField.textProperty().bindBidirectional(myschool.locationProperty());
+        //locationField.textProperty().bindBidirectional(myschool.locationProperty());
     }
 
 
@@ -577,8 +593,8 @@ public class school_view extends Tab {
 
     public school validSchool() {
         school maseno;
-        Integer schoolId;
-        String schoolName;
+        int schoolId = 0;
+        String schoolName = " ";
         String centerCode;
         String academicYear;
         String location;
@@ -588,9 +604,10 @@ public class school_view extends Tab {
         String website;
         String email;
         String currentTerm;
-        String activeState;
+        String activeState = " ";
 
         if (schoolIdField.getText().isEmpty() || schoolIdField.getText() == null) {
+
 
         } else {
             schoolId = Integer.parseInt(schoolIdField.getText().trim().toUpperCase());
@@ -604,57 +621,77 @@ public class school_view extends Tab {
         }
 
         if (centerCodeField.getText().isEmpty() || centerCodeField.getText() == null) {
-
+            centerCode = " ";
         } else {
             centerCode = centerCodeField.getText().trim().toUpperCase();
         }
 
-        if (academicYearField.getSelectionModel().getSelectedItem().toString().isEmpty() || academicYearField.getSelectionModel().getSelectedItem().toString() == null) {
+        if (academicYearField.getValue() == null || academicYearField.getSelectionModel().getSelectedItem().toString() == null || academicYearField.getSelectionModel().getSelectedItem().toString().isEmpty()) {
+            academicYear = " ";
 
         } else {
             academicYear = academicYearField.getSelectionModel().getSelectedItem().toString();
         }
 
         if (locationField.getText().isEmpty() || locationField.getText() == null) {
-
+            location = " ";
         } else {
             location = locationField.getText().trim().toUpperCase();
         }
         if (addressField.getText().isEmpty() || addressField.getText().trim() == null) {
-
+            address = " ";
         } else {
             address = addressField.getText().toUpperCase().trim();
         }
         if (telephoneField.getText().isEmpty() || telephoneField.getText() == null) {
-
+            telephone = " ";
         } else {
             telephone = telephoneField.getText();
         }
 
         if (mobileField.getText().isEmpty() || mobileField.getText() == null) {
-
+            mobile = " ";
         } else {
             mobile = mobileField.getText().toUpperCase().trim();
         }
 
         if (websiteField.getText().isEmpty() || websiteField.getText() == null) {
+            website = " ";
         } else {
             website = websiteField.getText().trim().toUpperCase();
 
         }
         if (emailField.getText().isEmpty() || emailField.getText() == null) {
-
+            email = " ";
         } else {
             email = emailField.getText().trim().toUpperCase();
         }
         if (currentTermField.getText().isEmpty() || currentTermField.getText() == null) {
-
+            currentTerm = " ";
         } else {
             currentTerm = currentTermField.getText().toUpperCase().trim();
         }
 
+        maseno = new school(schoolId, schoolName, centerCode, academicYear, location, address, mobile, telephone, website, email, currentTerm, " ACTIVE");
+        return maseno;
+    }
 
-        return maseno
+
+    public void reset() {
+        emailField.clear();
+        websiteField.clear();
+        mobileField.clear();
+        telephoneField.clear();
+        addressField.clear();
+        schoolIdField.clear();
+        schoolNameField.clear();
+        currentTermField.clear();
+        locationField.clear();
+    }
+
+
+    public void sendNotification() {
+
     }
 
 }

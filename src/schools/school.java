@@ -1,7 +1,8 @@
 package schools;
 
 import database.saveSchool;
-import javafx.beans.property.ReadOnlyIntegerWrapper;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -18,8 +19,8 @@ public class school {
     private static ExecutorService executor;
     private static AtomicInteger schoolsSequence = new AtomicInteger(0);
     ;
-    private final ReadOnlyIntegerWrapper schoolId =
-            new ReadOnlyIntegerWrapper(this, "schoolId", schoolsSequence.incrementAndGet());
+    private final IntegerProperty schoolId =
+            new SimpleIntegerProperty(this, "schoolId", schoolsSequence.incrementAndGet());
     private final StringProperty schoolName = new SimpleStringProperty(this, "schoolName", null);
     private final StringProperty centerCode = new SimpleStringProperty(this, "centerCode", null);
     private final StringProperty schoolRegistration = new SimpleStringProperty(this, "schoolRegistration", null);
@@ -38,7 +39,8 @@ public class school {
     }
 
 
-    public school(int schoolId, String schoolName, String centerCode, String academicYear, String location, String address, String mobile,
+    public school(int schoolId, String schoolName, String centerCode,
+                  String academicYear, String location, String address, String mobile,
                   String telephone, String website, String email, String currentTerm, String activeState) {
         this.academicYear.set(academicYear);
         this.activeState.set(activeState);
@@ -62,6 +64,15 @@ public class school {
         school.schoolsSequence = schoolsSequence;
     }
 
+
+    public static ExecutorService getExecutor() {
+        return executor;
+    }
+
+    public static void setExecutor(ExecutorService executor) {
+        school.executor = executor;
+    }
+
     public int getSchoolId() {
         return schoolId.get();
     }
@@ -70,7 +81,7 @@ public class school {
         this.schoolId.set(schoolId);
     }
 
-    public ReadOnlyIntegerWrapper schoolIdProperty() {
+    public IntegerProperty schoolIdProperty() {
         return schoolId;
     }
 
@@ -261,6 +272,22 @@ public class school {
         return isSaved;
 
     }
+
+
+    public void save() {
+
+
+        executor = Executors.newFixedThreadPool(2);
+        executor.execute(new saveSchool(this));
+
+
+        //save to db
+        //save to db
+
+
+    }
+
+
 
 
     public enum schoolCategory {
