@@ -396,7 +396,7 @@ public class employeeDataForm {
         grid.addColumn(6, save, clear, cancel);
 
         grid.setVgap(10);
-        grid.setHgap(50);
+        grid.setHgap(15);
         Adding.getChildren().addAll(grid);
         return Adding;
     }

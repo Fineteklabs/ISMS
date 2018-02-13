@@ -39,30 +39,7 @@ public class parentsDataForm {
     public static SplitMenuButton homebtn = new SplitMenuButton();
     public static VBox Adding;
     private static ObservableList<parent> entries = FXCollections.observableArrayList();
-    private static TextField registrationNumber;
-    private static Label registrationNumberlbl;
-    private static ComboBox vehicleSeats;
-    private static Label vehicleSeatslbl;
-    private static ComboBox vehicleModel;
-    private static Label vehicleModellbl;
-    private static TextField ownerFirstName;
-    private static Label ownerFirstNamelbl;
-    private static TextField ownerLastName;
-    private static Label ownerLastNamelbl;
-    private static TextField ownerIdNumber;
-    private static Label ownerIdNumberlbl;
-    private static ComboBox driver;
-    private static Label driverlbl;
-    private static TextField ownerPhoneNumber;
-    private static Label ownerPhoneNumberlbl;
-    private static TextField conductorFirstName;
-    private static Label conductorFirstNamelbl;
 
-    private static TextField conductorLastName;
-    private static Label conductorLastNamelbl;
-
-    private static TextField conductorPhoneNumber;
-    private static Label conductorPhoneNumberlbl;
     private static ComboBox position;
     private static Label positionlbl;
 
@@ -72,27 +49,22 @@ public class parentsDataForm {
     private static JFXPasswordField password;
     private static Label passwordlbl1;
     private static JFXPasswordField password1;
-    private static Label openingBallbl;
     private static Label doblbl;
     private static JFXDatePicker dob;
     private static Label phonenumberlbl;
-    private static ChoiceBox activity;
     private static Button save;
-    private static Label activelbl;
     private static Button cancel;
     private static Button clear;
     private static Button held;
     private static GridPane saving = new GridPane();
     private static Label entryDatelbl;
-    private static TextField driverPhoneNumber;
     private static Label employeeFirstNamelbl;
     private static TextField employeeFirstName;
     private static Label secondNamelbl;
     private static TextField secondName;
     private static TextField idNumber;
     private static Label idNumberlbl;
-    private static Label wagelbl;
-    private static TextField wage;
+
     private static TextField salary;
     private static Label salarylbl;
     private static ComboBox maritalStatus;
@@ -370,7 +342,7 @@ public class parentsDataForm {
         grid.addColumn(5, save, clear, cancel);
 
         grid.setVgap(10);
-        grid.setHgap(50);
+        grid.setHgap(15);
         Adding.getChildren().addAll(grid);
         return Adding;
     }
