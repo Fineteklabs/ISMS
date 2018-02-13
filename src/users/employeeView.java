@@ -63,9 +63,9 @@ public class employeeView extends Tab {
         devidescreen.getItems().addAll(leftarea, centraldata);
         //border.setPadding( new Insets(10,10,10,10));
 //        // border.setRight(itemcounter());
-        devidescreen.setDividerPositions(0.15);
+        devidescreen.setDividerPositions(0.12);
         //
-        leftarea.maxWidthProperty().bind(devidescreen.widthProperty().multiply(0.20));
+        leftarea.maxWidthProperty().bind(devidescreen.widthProperty().multiply(0.11));
         return devidescreen;
     }
 }

@@ -106,41 +106,18 @@ public class parentsList extends Task<ObservableList<parent>> {
 //    }
     // RETURN ids
     public static TableColumn<parent, String> getIdNumber() {
-        TableColumn<parent, String> empIdNumber = new TableColumn<>("ID.NO");
+        TableColumn<parent, String> empIdNumber = new TableColumn<>("id.no");
         empIdNumber.setCellValueFactory(new PropertyValueFactory<>("nationalId"));
         return empIdNumber;
 
 
     }
 
-    public static TableColumn<parent, String> getLastName() {
-        TableColumn<parent, String> empIdNumber = new TableColumn<>("LAST NAME");
-        empIdNumber.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        return empIdNumber;
 
-
-    }
-
-
-    public static TableColumn<parent, Double> getSalary() {
-        TableColumn<parent, Double> empIdNumber = new TableColumn<>("SALARY");
-        empIdNumber.setCellValueFactory(new PropertyValueFactory<>("salary"));
-        return empIdNumber;
-
-
-    }
-
-    public static TableColumn<parent, String> getFirstName() {
-        TableColumn<parent, String> memberIdColumn = new TableColumn<>("FIRST NAME");
-        memberIdColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        return memberIdColumn;
-
-
-    }
 
     // return  names
     public static TableColumn<parent, String> getName() {
-        TableColumn<parent, String> memberFirstNameColumn = new TableColumn<>("OWNER");
+        TableColumn<parent, String> memberFirstNameColumn = new TableColumn<>(" Name");
         memberFirstNameColumn.setCellValueFactory(cellData -> {
             parent ms = cellData.getValue();
             String firstname = ms.getFirstName();
@@ -203,43 +180,49 @@ public class parentsList extends Task<ObservableList<parent>> {
 //        return getNames;
 //    }
     //residence
-    public static TableColumn<parent, String> getBonus() {
-        TableColumn<parent, String> memberResidenceColumn = new TableColumn<>("BONUS");
-        memberResidenceColumn.setCellValueFactory(new PropertyValueFactory<>("bonus"));
+    public static TableColumn<parent, String> getOccupation() {
+        TableColumn<parent, String> memberResidenceColumn = new TableColumn<>("occupation");
+        memberResidenceColumn.setCellValueFactory(new PropertyValueFactory<>("occupation"));
         return memberResidenceColumn;
     }
 
+    public static TableColumn<parent, String> getPostalAddress() {
+        TableColumn<parent, String> memberResidenceColumn = new TableColumn<>("postal add");
+        memberResidenceColumn.setCellValueFactory(new PropertyValueFactory<>("postalAddress"));
+        return memberResidenceColumn;
+    }
 
-    public static TableColumn<parent, String> getActiveStatu() {
-        TableColumn<parent, String> memberFineColumn = new TableColumn<>("ACTIVITY STATE");
+    public static TableColumn<parent, String> getActiveStatus() {
+        TableColumn<parent, String> memberFineColumn = new TableColumn<>("status");
         memberFineColumn.setCellValueFactory(new PropertyValueFactory<>("activeStatus"));
         return memberFineColumn;
     }
 
 
-    public static TableColumn<parent, Double> wage() {
-        TableColumn<parent, Double> memberFineColumn = new TableColumn<>("WAGE");
-        memberFineColumn.setCellValueFactory(new PropertyValueFactory<>("wage"));
-        return memberFineColumn;
-    }
 
 
     public static TableColumn<parent, String> getPhoneNumber() {
-        TableColumn<parent, String> memberFineColumn = new TableColumn<>("PHONE NUMBER");
+        TableColumn<parent, String> memberFineColumn = new TableColumn<>("tel");
         memberFineColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         return memberFineColumn;
     }
 
 
-    public static TableColumn<parent, String> getPosition() {
-        TableColumn<parent, String> memberFineColumn = new TableColumn<>("POSITION");
-        memberFineColumn.setCellValueFactory(new PropertyValueFactory<>("position"));
+    public static TableColumn<parent, String> getMobileNumber() {
+        TableColumn<parent, String> memberFineColumn = new TableColumn<>("mobile");
+        memberFineColumn.setCellValueFactory(new PropertyValueFactory<>("mobileNumber"));
         return memberFineColumn;
     }
 
-    public static TableColumn<parent, String> getMaritalStatus() {
-        TableColumn<parent, String> spouseNameColumn = new TableColumn<>("MARITAL STATUS");
-        spouseNameColumn.setCellValueFactory(new PropertyValueFactory<>("maritalStatus"));
+    public static TableColumn<parent, String> getEmailAddress() {
+        TableColumn<parent, String> spouseNameColumn = new TableColumn<>("email");
+        spouseNameColumn.setCellValueFactory(new PropertyValueFactory<>("emailAddress"));
+        return spouseNameColumn;
+    }
+
+    public static TableColumn<parent, String> getRole() {
+        TableColumn<parent, String> spouseNameColumn = new TableColumn<>("role");
+        spouseNameColumn.setCellValueFactory(new PropertyValueFactory<>("Role"));
         return spouseNameColumn;
     }
 

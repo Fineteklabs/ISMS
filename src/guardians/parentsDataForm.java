@@ -362,14 +362,14 @@ public class parentsDataForm {
         numberCol.setCellValueFactory(column -> new ReadOnlyObjectWrapper<Number>(table.getItems().indexOf(column.getValue()) + 1));
         table.getColumns().addAll(numberCol,
                 parentsList.getIdNumber(),
-                parentsList.getFirstName(),
-                parentsList.getLastName(),
-                parentsList.getSalary(),
-                parentsList.getBonus(),
-                parentsList.getPosition(),
-                parentsList.getMaritalStatus(),
+                parentsList.getName(),
+                parentsList.getOccupation(),
+                parentsList.getRole(),
                 parentsList.getPhoneNumber(),
-                parentsList.getActiveStatu()
+                parentsList.getEmailAddress(),
+                parentsList.getPostalAddress(),
+                parentsList.getPhoneNumber(),
+                parentsList.getActiveStatus()
 
         );
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -483,7 +483,7 @@ public class parentsDataForm {
 
         //table.setItems(entries);
         table.setPadding(new Insets(20, 20, 20, 20));
-        table.setPlaceholder(new Label(" PLEASE ADD ::EMPLOYEES INTO THE SYSTEM"));
+        table.setPlaceholder(new Label(" PLEASE ADD ::GUARDIANS INTO THE SYSTEM"));
 //table.setItems(entries);
 
 
