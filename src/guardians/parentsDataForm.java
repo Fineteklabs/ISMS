@@ -545,7 +545,7 @@ public class parentsDataForm {
         bar.setCursor(Cursor.HAND);
 
         // MenuItem recent= new MenuItem("recently added");
-        MenuItem editDetails = new MenuItem("EDIT DETAILS");
+        MenuItem editDetails = new MenuItem("edit parent");
         editDetails.setOnAction(e -> {
 
             // Inventory.border.setCenter(AddItem.main());
@@ -555,25 +555,25 @@ public class parentsDataForm {
         });
 
 
-        MenuItem addSavings = new MenuItem(" ADD EMPLOYEE");
+        MenuItem addSavings = new MenuItem(" add parents");
 
         addSavings.setOnAction(e -> {
             employeeFirstName.requestFocus();
         });
-        MenuItem savingsHistory = new MenuItem("EMPLOYEE PAYMENTS");
+        MenuItem savingsHistory = new MenuItem("parent payments");
         savingsHistory.setOnAction(e -> {
 
 
         });
 
-        MenuItem updates = new MenuItem("UPDATE EMPLOYEES");
+        MenuItem updates = new MenuItem("Update guardians");
         updates.setOnAction(e -> {
             updateParent.updateEmployeePop();
             updateParent.operations.getChildren().remove(updateParent.clear);
             updateParent.operations.getChildren().remove(updateParent.delete);
             updateParent.operations.getChildren().remove(updateParent.suspend);
         });
-        MenuItem quickupdate = new MenuItem("DELETE EMPLOYEE");
+        MenuItem quickupdate = new MenuItem("delete guardians");
         quickupdate.setOnAction(e -> {
             updateParent.updateEmployeePop();
             updateParent.operations.getChildren().remove(updateParent.clear);
