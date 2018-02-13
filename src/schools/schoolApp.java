@@ -100,13 +100,14 @@ public class schoolApp extends Application {
         parent myparent = new parent();
         level mylevels = new level();
         employeeView employees = new employeeView("EMPLOYEES");
+        guardians.parentView myparents = new guardians.parentView("GUARDIANS");
         student_view students = new student_view(momanyi, "STUDENTS CENTER");
         level_view levels = new level_view(mylevels, "CLASSES");
         school_view views = new school_view(myschool, "SCHOOL INFORMATION");
         parent_view parents = new parent_view(myparent, "PARENT CENTER");
         views.closableProperty().set(false);
 
-        tabs.getTabs().addAll(views, students, parents, levels, employees);
+        tabs.getTabs().addAll(views, students, parents, levels, myparents, employees);
         BorderPane border = new BorderPane();
         border.setCenter(tabs);
 

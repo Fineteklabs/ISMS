@@ -329,11 +329,11 @@ public class parentsDataForm {
         });
 
         //  printMember= new CheckBox("Print Member Details");
-        save.setPrefWidth(50);
+        //  save.setPrefWidth(0);
         cancel = new Button("cancel");
-        cancel.setPrefWidth(50);
+        // cancel.setPrefWidth(50);
         clear = new Button("clear");
-        clear.setPrefWidth(50);
+        //  clear.setPrefWidth(50);
         held = new Button("search");
 //        saving.addColumn(2,save,clear,cancel);
 //        saving.setHgap(10);
@@ -367,7 +367,7 @@ public class parentsDataForm {
         );
 
 
-        grid.addColumn(6, save, clear, cancel);
+        grid.addColumn(5, save, clear, cancel);
 
         grid.setVgap(10);
         grid.setHgap(50);

@@ -1,7 +1,6 @@
 package guardians;
 
 import javafx.geometry.Orientation;
-import javafx.scene.Node;
 import javafx.scene.control.Separator;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
@@ -19,9 +18,9 @@ public class parentView extends Tab {
     public VBox border;
     private BorderPane centraldata;
 
-    public parentView(String title, Node graphic) {
+    public parentView(String title) {
         this.setText(title);
-        this.setGraphic(graphic);
+        //   this.setGraphic(graphic);
         init();
     }
 
@@ -64,9 +63,9 @@ public class parentView extends Tab {
         devidescreen.getItems().addAll(leftarea, centraldata);
         //border.setPadding( new Insets(10,10,10,10));
 //        // border.setRight(itemcounter());
-        devidescreen.setDividerPositions(0.15);
+        devidescreen.setDividerPositions(0.12);
         //
-        leftarea.maxWidthProperty().bind(devidescreen.widthProperty().multiply(0.20));
+        leftarea.maxWidthProperty().bind(devidescreen.widthProperty().multiply(0.10));
         return devidescreen;
     }
 }

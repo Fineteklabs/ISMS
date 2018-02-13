@@ -7,7 +7,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -225,25 +224,26 @@ public class student {
         return true;
     }
 
-    public AgeCategory getAgeCategory() {
-        if (dateOfBirth.get() == null) {
-            return AgeCategory.UNKNOWN;
-        }
-        long years = ChronoUnit.YEARS.between(dateOfBirth.get(), LocalDate.now());
-        if (years >= 0 && years < 2) {
-            return AgeCategory.BABY;
-        } else if (years >= 2 && years < 13) {
-            return AgeCategory.CHILD;
-        } else if (years >= 13 && years <= 19) {
-            return AgeCategory.TEEN;
-        } else if (years > 19 && years <= 50) {
-            return AgeCategory.ADULT;
-        } else if (years > 50) {
-            return AgeCategory.SENIOR;
-        } else {
-            return AgeCategory.UNKNOWN;
-        }
-    }
+//    public AgeCategory getAgeCategory() {
+//        if (dateOfBirth.get() == null) {
+//            return AgeCategory.UNKNOWN;
+//        }
+//        long years = ChronoUnit.YEARS.between(dateOfBirth.get(), LocalDate.now());
+//        if (years >= 0 && years < 2) {
+//            return AgeCategory.BABY;
+//        } else if (years >= 2 && years < 13) {
+//            return AgeCategory.CHILD;
+//        } else if (years >= 13 && years <= 19) {
+//            return AgeCategory.TEEN;
+//        } else if (years > 19 && years <= 50) {
+//            return AgeCategory.ADULT;
+//            return AgeCategory.SENIOR;
+//        } else if (years > 50) {
+//        } else {
+//            return AgeCategory.UNKNOWN;
+//        }
+//        return AgeCategory;
+//    }
 
     public Boolean isValidStudent(student momanyi, List<String> errorList) {
         boolean isValid = true;
@@ -293,7 +293,6 @@ public class student {
         //save to db
         //save to db
         return isSaved;
-
     }
 
     public String toString() {
