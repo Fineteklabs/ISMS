@@ -10,7 +10,7 @@ import javafx.concurrent.Task;
  * <code>results</code> list is final, though its contents are replaced when a
  * service call successfully concludes.
  */
-public class EmployeeTask extends Service<ObservableList<employees.employee>> {
+public class parentsTask extends Service<ObservableList<parent>> {
 
     /**
      * Create and return the task for fetching the data. Note that this method
@@ -21,6 +21,6 @@ public class EmployeeTask extends Service<ObservableList<employees.employee>> {
     protected Task createTask() {
 
 
-        return new employeeList();
+        return new parentsList();
     }
 }

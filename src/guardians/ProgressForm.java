@@ -14,7 +14,7 @@ import javafx.stage.StageStyle;
 import static javafx.application.Application.launch;
 
 public class ProgressForm {
-    static final EmployeeTask service = new EmployeeTask();
+    static final parentsTask service = new parentsTask();
     private final Stage dialogStage;
     private final ProgressBar pb = new ProgressBar();
     private final ProgressIndicator pin = new ProgressIndicator();

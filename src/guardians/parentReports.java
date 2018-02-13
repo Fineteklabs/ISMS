@@ -11,11 +11,11 @@ import javafx.stage.Stage;
 /**
  * Created by FINETECHLABS on 14/05/2017.
  */
-public class employeeReports extends Application {
+public class parentReports extends Application {
     private static ComboBox<employee> employeeDetails;
     private static Label employeeDetailslbl;
     private static ListView employees;
-    private static TableView<savings.savings> tableSavings;
+    private static TableView<employee> tableSavings;
 
     @Override
     public void start(Stage primaryStage) throws Exception {

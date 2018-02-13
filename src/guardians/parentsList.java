@@ -21,7 +21,7 @@ import org.apache.commons.dbutils.DbUtils;
 
 import java.sql.*;
 
-public class employeeList extends Task<ObservableList<employee>> {
+public class parentsList extends Task<ObservableList<parent>> {
 
 
 //    public  static List<vehicle.vehicle> getPersonsList() {
@@ -105,16 +105,16 @@ public class employeeList extends Task<ObservableList<employee>> {
 //        return loanlist;
 //    }
     // RETURN ids
-    public static TableColumn<employee, String> getIdNumber() {
-        TableColumn<employee, String> empIdNumber = new TableColumn<>("ID.NO");
-        empIdNumber.setCellValueFactory(new PropertyValueFactory<>("idNumber"));
+    public static TableColumn<parent, String> getIdNumber() {
+        TableColumn<parent, String> empIdNumber = new TableColumn<>("ID.NO");
+        empIdNumber.setCellValueFactory(new PropertyValueFactory<>("nationalId"));
         return empIdNumber;
 
 
     }
 
-    public static TableColumn<employee, String> getLastName() {
-        TableColumn<employee, String> empIdNumber = new TableColumn<>("LAST NAME");
+    public static TableColumn<parent, String> getLastName() {
+        TableColumn<parent, String> empIdNumber = new TableColumn<>("LAST NAME");
         empIdNumber.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         return empIdNumber;
 
@@ -122,16 +122,16 @@ public class employeeList extends Task<ObservableList<employee>> {
     }
 
 
-    public static TableColumn<employee, Double> getSalary() {
-        TableColumn<employee, Double> empIdNumber = new TableColumn<>("SALARY");
+    public static TableColumn<parent, Double> getSalary() {
+        TableColumn<parent, Double> empIdNumber = new TableColumn<>("SALARY");
         empIdNumber.setCellValueFactory(new PropertyValueFactory<>("salary"));
         return empIdNumber;
 
 
     }
 
-    public static TableColumn<employee, String> getFirstName() {
-        TableColumn<employee, String> memberIdColumn = new TableColumn<>("FIRST NAME");
+    public static TableColumn<parent, String> getFirstName() {
+        TableColumn<parent, String> memberIdColumn = new TableColumn<>("FIRST NAME");
         memberIdColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         return memberIdColumn;
 
@@ -139,10 +139,10 @@ public class employeeList extends Task<ObservableList<employee>> {
     }
 
     // return  names
-    public static TableColumn<employee, String> getName() {
-        TableColumn<employee, String> memberFirstNameColumn = new TableColumn<>("OWNER");
+    public static TableColumn<parent, String> getName() {
+        TableColumn<parent, String> memberFirstNameColumn = new TableColumn<>("OWNER");
         memberFirstNameColumn.setCellValueFactory(cellData -> {
-            employee ms = cellData.getValue();
+            parent ms = cellData.getValue();
             String firstname = ms.getFirstName();
             String lastname = ms.getLastName();
             String phone = ms.getPhoneNumber();
@@ -203,42 +203,42 @@ public class employeeList extends Task<ObservableList<employee>> {
 //        return getNames;
 //    }
     //residence
-    public static TableColumn<employee, String> getBonus() {
-        TableColumn<employee, String> memberResidenceColumn = new TableColumn<>("BONUS");
+    public static TableColumn<parent, String> getBonus() {
+        TableColumn<parent, String> memberResidenceColumn = new TableColumn<>("BONUS");
         memberResidenceColumn.setCellValueFactory(new PropertyValueFactory<>("bonus"));
         return memberResidenceColumn;
     }
 
 
-    public static TableColumn<employee, String> getActiveStatu() {
-        TableColumn<employee, String> memberFineColumn = new TableColumn<>("ACTIVITY STATE");
+    public static TableColumn<parent, String> getActiveStatu() {
+        TableColumn<parent, String> memberFineColumn = new TableColumn<>("ACTIVITY STATE");
         memberFineColumn.setCellValueFactory(new PropertyValueFactory<>("activeStatus"));
         return memberFineColumn;
     }
 
 
-    public static TableColumn<employee, Double> wage() {
-        TableColumn<employee, Double> memberFineColumn = new TableColumn<>("WAGE");
+    public static TableColumn<parent, Double> wage() {
+        TableColumn<parent, Double> memberFineColumn = new TableColumn<>("WAGE");
         memberFineColumn.setCellValueFactory(new PropertyValueFactory<>("wage"));
         return memberFineColumn;
     }
 
 
-    public static TableColumn<employee, String> getPhoneNumber() {
-        TableColumn<employee, String> memberFineColumn = new TableColumn<>("PHONE NUMBER");
+    public static TableColumn<parent, String> getPhoneNumber() {
+        TableColumn<parent, String> memberFineColumn = new TableColumn<>("PHONE NUMBER");
         memberFineColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         return memberFineColumn;
     }
 
 
-    public static TableColumn<employee, String> getPosition() {
-        TableColumn<employee, String> memberFineColumn = new TableColumn<>("POSITION");
+    public static TableColumn<parent, String> getPosition() {
+        TableColumn<parent, String> memberFineColumn = new TableColumn<>("POSITION");
         memberFineColumn.setCellValueFactory(new PropertyValueFactory<>("position"));
         return memberFineColumn;
     }
 
-    public static TableColumn<employee, String> getMaritalStatus() {
-        TableColumn<employee, String> spouseNameColumn = new TableColumn<>("MARITAL STATUS");
+    public static TableColumn<parent, String> getMaritalStatus() {
+        TableColumn<parent, String> spouseNameColumn = new TableColumn<>("MARITAL STATUS");
         spouseNameColumn.setCellValueFactory(new PropertyValueFactory<>("maritalStatus"));
         return spouseNameColumn;
     }
@@ -310,207 +310,10 @@ public class employeeList extends Task<ObservableList<employee>> {
 //    }
 
 
-//    public static ObservableList<vehicle.vehicle> allMembers()
-//    {
-//        ObservableList<vehicle.vehicle> members= FXCollections.observableArrayList();
-//        Connection conn = null;
-//        Statement statement = null;
-//        ResultSet rs        = null;
-//
-//        try {
-//            conn =  Connections. connect();
-//
-//            statement   =conn.createStatement();
-//            String s    = "SELECT * FROM MemberList ";
-//
-//            rs          = statement.executeQuery(s);
-//            int g =0;
-//
-//            while (rs.next()) {
-//                vehicle.vehicle steve= new vehicle.vehicle(rs.getString("idNumber"),
-//                        rs.getString("firstName"),
-//                        rs.getString("lastName"),
-//                        rs.getString("phoneNumber"),
-//
-//                        rs.getString("refereeIdNumber"),
-//                        rs.getString("refereeFirstName"),
-//                        rs.getString("refereeLastName"),
-//                        rs.getString("residence"),
-//                        rs.getDouble("openingBalance"),
-//                        rs.getDouble("totalWorth"),
-//                        rs.getDouble("finecount"),
-//                        rs.getDouble("accruedProfit"),
-//                        rs.getDouble("accruedLoss"),
-//                        rs.getString("activestatus"),
-//                        rs.getDouble("loanbalance"));
-//
-//
-//
-//                members.add(steve);
-//
-//
-//            }
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }finally{
-//            //Code to release your resources
-//            DbUtils.closeQuietly(conn);
-//            DbUtils.closeQuietly(statement);
-//            DbUtils.closeQuietly(rs);
-//        }
-//
-//        return members;
-//    }
-//    public static ObservableList<vehicle.vehicle> activeMembers()
-//    {
-//        ObservableList<vehicle.vehicle> members= FXCollections.observableArrayList();
-//
-//        Connection conn = null;
-//        Statement statement = null;
-//        ResultSet rs        = null;
-//
-//        try {
-//            conn = Connections. connect();
-//
-//            statement   =conn.createStatement();
-//            String s    = "SELECT * FROM MemberList WHERE activestatus='ACTIVE'";
-//
-//            rs          = statement.executeQuery(s);
-//            int g =0;
-//
-//            while (rs.next()) {
-//                Member steve= new Member(rs.getString("idNumber"),
-//                        rs.getString("firstName"),
-//                        rs.getString("lastName"),
-//                        rs.getString("phoneNumber"),
-//
-//                        rs.getString("refereeIdNumber"),
-//                        rs.getString("refereeFirstName"),
-//                        rs.getString("refereeLastName"),
-//                        rs.getString("residence"),
-//                        rs.getDouble("openingBalance"),
-//                        rs.getDouble("totalWorth"),
-//                        rs.getDouble("finecount"),
-//                        rs.getDouble("accruedProfit"),
-//                        rs.getDouble("accruedLoss"),
-//                        rs.getString("activestatus"),
-//                        rs.getDouble("loanbalance"));
-//
-//                members.add(steve);
-//            }
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }finally{
-//            //Code to release your resources
-//            DbUtils.closeQuietly(conn);
-//            DbUtils.closeQuietly(statement);
-//            DbUtils.closeQuietly(rs);
-//        }
-//
-//        return members;
-//    }
 
-
-//
-//    public static ObservableList<vehicle.vehicle> inactiveMembers()
-//    {
-//        ObservableList<vehicle.vehicle> members= FXCollections.observableArrayList();
-//
-//        Connection conn = null;
-//        Statement statement = null;
-//        ResultSet rs        = null;
-//
-//        try {
-//            conn = Connections. connect();
-//
-//            statement   =conn.createStatement();
-//            String s    = "SELECT * FROM MemberList WHERE activestatus='SUSPENDED'";
-//
-//            rs          = statement.executeQuery(s);
-//            int g =0;
-//
-//            while (rs.next()) {
-//                Member steve= new Member(rs.getString("idNumber"),
-//                        rs.getString("firstName"),
-//                        rs.getString("lastName"),
-//                        rs.getString("phoneNumber"),
-//
-//                        rs.getString("refereeIdNumber"),
-//                        rs.getString("refereeFirstName"),
-//                        rs.getString("refereeLastName"),
-//                        rs.getString("residence"),
-//                        rs.getDouble("openingBalance"),
-//                        rs.getDouble("totalWorth"),
-//                        rs.getDouble("finecount"),
-//                        rs.getDouble("accruedProfit"),
-//                        rs.getDouble("accruedLoss"),
-//                        rs.getString("activestatus"),
-//                        rs.getDouble("loanbalance"));
-//
-//                members.add(steve);
-//            }
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }finally{
-//            //Code to release your resources
-//            DbUtils.closeQuietly(conn);
-//            DbUtils.closeQuietly(statement);
-//            DbUtils.closeQuietly(rs);
-//        }
-//
-//        return members;
-//    }
-//    public static ObservableList<vehicle.vehicle> LoanEligibleMembers()
-//    {
-//        ObservableList<vehicle.vehicle> members= FXCollections.observableArrayList();
-//
-//        Connection conn = null;
-//        Statement statement = null;
-//        ResultSet rs        = null;
-//
-//        try {
-//            conn = Connections. connect();
-//
-//            statement   =conn.createStatement();
-//            String s    = "SELECT * FROM MemberList WHERE activestatus='ACTIVE'AND loanbalance=0";
-//
-//            rs          = statement.executeQuery(s);
-//            int g =0;
-//
-//            while (rs.next()) {
-//                vehicle.vehicle steve= new vehicle.vehicle(rs.getString("idNumber"),
-//                        rs.getString("firstName"),
-//                        rs.getString("lastName"),
-//                        rs.getString("phoneNumber"),
-//
-//                        rs.getString("refereeIdNumber"),
-//                        rs.getString("refereeFirstName"),
-//                        rs.getString("refereeLastName"),
-//                        rs.getString("residence"),
-//                        rs.getDouble("openingBalance"),
-//                        rs.getDouble("totalWorth"),
-//                        rs.getDouble("finecount"),
-//                        rs.getDouble("accruedProfit"),
-//                        rs.getDouble("accruedLoss"),
-//                        rs.getString("activestatus"),
-//                        rs.getDouble("loanbalance"));
-//
-//                members.add(steve);
-//            }
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }finally{
-//            //Code to release your resources
-//            DbUtils.closeQuietly(conn);
-//            DbUtils.closeQuietly(statement);
-//            DbUtils.closeQuietly(rs);
-//        }
-//
-//        return members;
-//    }
 
     public static void delete(int id) {
-        String sql = " DELETE FROM MemberList WHERE idNumber = ?";
+        String sql = " DELETE FROM parents WHERE idNumber = ?";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -526,8 +329,8 @@ public class employeeList extends Task<ObservableList<employee>> {
 //        common.refreshConnections.refreshMembers();
     }
 
-    public static ObservableList<employee> allEmployees() {
-        ObservableList<employee> members = FXCollections.observableArrayList();
+    public static ObservableList<parent> allParents() {
+        ObservableList<parent> members = FXCollections.observableArrayList();
         Connection conn = null;
         Statement statement = null;
         ResultSet rs = null;
@@ -542,26 +345,20 @@ public class employeeList extends Task<ObservableList<employee>> {
             int g = 0;
 
             while (rs.next()) {
-                employee steve = new employee(
-                        rs.getString("idNumber"),
+                parent steve = new parent(
+                        rs.getString("parentId"),
                         rs.getString("firstName"),
-                        rs.getString("secondName"),
+                        rs.getString("lastName"),
+                        rs.getString("occupation"),
+                        rs.getString("Role"),
                         rs.getString("phoneNumber"),
-                        rs.getString("residence"),
-                        rs.getString("station"),
-                        rs.getString("position"),
+                        rs.getString("emailAddress"),
+                        rs.getString("mobileNumber"),
+                        rs.getString("postalAddress"),
+                        rs.getString("password"),
                         rs.getString("activeStatus"),
-                        rs.getString("maritalStatus"),
-                        rs.getDouble("salary"),
-                        rs.getDouble("wage"),
-                        rs.getDouble("bonus"),
-                        rs.getDate("dob").toLocalDate(),
-                        rs.getDate("recruitmentDate").toLocalDate(),
-                        rs.getString("altPhone")
-
-
+                        rs.getString("nationalId")
                 );
-
 
                 members.add(steve);
 
@@ -596,8 +393,8 @@ public class employeeList extends Task<ObservableList<employee>> {
     }
 
     @Override
-    protected ObservableList<employee> call() throws Exception {
-        ObservableList<employee> members = FXCollections.observableArrayList();
+    protected ObservableList<parent> call() throws Exception {
+        ObservableList<parent> members = FXCollections.observableArrayList();
         Connection conn = null;
         Statement statement = null;
         ResultSet rs = null;
@@ -606,30 +403,25 @@ public class employeeList extends Task<ObservableList<employee>> {
             conn = connect();
 
             statement = conn.createStatement();
-            String s = "SELECT * FROM MemberList ";
+            String s = "SELECT * FROM parents ";
 
             rs = statement.executeQuery(s);
             int g = 0;
 
             while (rs.next()) {
-                employee steve = new employee(
-                        rs.getString("idNumber"),
+                parent steve = new parent(
+                        rs.getString("parentId"),
                         rs.getString("firstName"),
-                        rs.getString("secondName"),
+                        rs.getString("lastName"),
+                        rs.getString("occupation"),
+                        rs.getString("Role"),
                         rs.getString("phoneNumber"),
-                        rs.getString("residence"),
-                        rs.getString("station"),
-                        rs.getString("position"),
+                        rs.getString("emailAddress"),
+                        rs.getString("mobileNumber"),
+                        rs.getString("postalAddress"),
+                        rs.getString("password"),
                         rs.getString("activeStatus"),
-                        rs.getString("maritalStatus"),
-                        rs.getDouble("salary"),
-                        rs.getDouble("wage"),
-                        rs.getDouble("bonus"),
-                        rs.getDate("dob").toLocalDate(),
-                        rs.getDate("recruitmentDate").toLocalDate(),
-                        rs.getString("altPhone")
-
-
+                        rs.getString("nationalId")
                 );
 
 

@@ -1,4 +1,4 @@
-package employees;
+package guardians;
 
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
@@ -12,14 +12,14 @@ import javafx.scene.layout.VBox;
 /**
  * Created by FINETECHLABS on 09/01/2017.
  */
-public class employeeView extends Tab {
+public class parentView extends Tab {
 
     public static BorderPane innerborder;
     private static GridPane leftarea;
     public VBox border;
     private BorderPane centraldata;
 
-    public employeeView(String title, Node graphic) {
+    public parentView(String title, Node graphic) {
         this.setText(title);
         this.setGraphic(graphic);
         init();
@@ -49,9 +49,9 @@ public class employeeView extends Tab {
 
         innerborder.setCenter(leftarea);
         centraldata = new BorderPane();
-        centraldata.setTop(employeeDataForm.mainmenu());
-        centraldata.setCenter(employeeDataForm.EmployeeTableHolder());
-        centraldata.setBottom(employeeDataForm.Add());
+        centraldata.setTop(parentsDataForm.mainmenu());
+        centraldata.setCenter(parentsDataForm.EmployeeTableHolder());
+        centraldata.setBottom(parentsDataForm.Add());
 
         border = new VBox();
         // border.getChildren().addAll(homeAccess.quickAccess());

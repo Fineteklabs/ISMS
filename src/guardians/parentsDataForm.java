@@ -2,11 +2,6 @@ package guardians;
 
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
-import common.emptyFieldError;
-import database.error.FirebaseException;
-import database.error.JacksonUtilityException;
-import database.model.FirebaseResponse;
-import database.service.Firebase;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -23,35 +18,27 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import org.apache.commons.dbutils.DbUtils;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
-import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.Map;
 
 /**
  * Created by FINETECHLABS on 26/01/2017.
  */
-public class employeeDataForm {
-    public static TableView<employee> table;
+public class parentsDataForm {
+    public static TableView<parent> table;
     public static SplitMenuButton homebtn = new SplitMenuButton();
     public static VBox Adding;
-    private static ObservableList<employee> entries = FXCollections.observableArrayList();
+    private static ObservableList<parent> entries = FXCollections.observableArrayList();
     private static TextField registrationNumber;
     private static Label registrationNumberlbl;
     private static ComboBox vehicleSeats;
@@ -124,25 +111,6 @@ public class employeeDataForm {
         employeeFirstNamelbl = new Label(" FIRST NAME");
         employeeFirstName = new TextField();
 
-//            IdNumber= new TextField(){
-//
-//
-//
-//                @Override
-//                public void replaceText(int start, int end, String text) {
-//                    if (!text.matches("[a-z, A-Z]")) {
-//                        super.replaceText(start, end, text);
-//                    }
-//
-//                }
-//
-//                @Override
-//                public void replaceSelection(String text) {
-//                    if (!text.matches("[a-z, A-Z]")) {
-//                        super.replaceSelection(text);
-//                    }
-//                }
-//            };
 
 
         employeeFirstName.setPrefColumnCount(8);
@@ -301,15 +269,7 @@ public class employeeDataForm {
         save = new Button("save");
         save.setOnAction(e -> {
 
-            try {
-                addToFirebase();
-            } catch (FirebaseException e1) {
-                e1.printStackTrace();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            } catch (JacksonUtilityException e1) {
-                e1.printStackTrace();
-            }
+
 //check if all input forms are filled
             if (idNumber.getText().isEmpty() || employeeFirstName.getText().isEmpty() ||
                     secondName.getText().isEmpty() || phoneNumber.getText().isEmpty() ||
@@ -322,14 +282,10 @@ public class employeeDataForm {
                     password1.getText().isEmpty() ||
                     activeStatus.getValue().toString().isEmpty() ||
                     entryDate.getValue().toString().isEmpty()) {
-                emptyFieldError.showFatalError();
+                //  emptyFieldError.showFatalError();
             } else {
 
 
-                //insert into db
-//                    insert( String idNumber,String firstName,String secondName,String phoneNumber,String residence,String station, String position,
-//                            String activeStatus,String maritalStatus,double salary,double wage,double bonus,LocalDate dob,LocalDate recruitmentDate) {
-//
 
 
                 insert(idNumber.getText().toUpperCase().trim(), employeeFirstName.getText().toUpperCase().trim(), secondName.getText().toUpperCase().trim(),
@@ -368,7 +324,7 @@ public class employeeDataForm {
 
 
                 table.setItems(null);
-                table.setItems(employeeList.allEmployees());
+                //     table.setItems(employeeList.allEmployees());
             }
         });
 
@@ -423,25 +379,25 @@ public class employeeDataForm {
     public static BorderPane EmployeeTableHolder() {
         BorderPane update = new BorderPane();
         //entries.addAll(vehicleList.allMembers());
-        table = new TableView<>(employeeList.allEmployees());
+        table = new TableView<>(parentsList.allParents());
 
 
-        TableColumn<employee, Number> numberCol = new TableColumn<employee, Number>("#");
+        TableColumn<parent, Number> numberCol = new TableColumn<parent, Number>("#");
         numberCol.setSortable(false);
         numberCol.setMinWidth(50);
         numberCol.setMaxWidth(150);
 
         numberCol.setCellValueFactory(column -> new ReadOnlyObjectWrapper<Number>(table.getItems().indexOf(column.getValue()) + 1));
         table.getColumns().addAll(numberCol,
-                employeeList.getIdNumber(),
-                employeeList.getFirstName(),
-                employeeList.getLastName(),
-                employeeList.getSalary(),
-                employeeList.getBonus(),
-                employeeList.getPosition(),
-                employeeList.getMaritalStatus(),
-                employeeList.getPhoneNumber(),
-                employeeList.getActiveStatu()
+                parentsList.getIdNumber(),
+                parentsList.getFirstName(),
+                parentsList.getLastName(),
+                parentsList.getSalary(),
+                parentsList.getBonus(),
+                parentsList.getPosition(),
+                parentsList.getMaritalStatus(),
+                parentsList.getPhoneNumber(),
+                parentsList.getActiveStatu()
 
         );
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -450,10 +406,10 @@ public class employeeDataForm {
 
 
         table.setRowFactory(
-                new Callback<TableView<employee>, TableRow<employee>>() {
+                new Callback<TableView<parent>, TableRow<parent>>() {
                     @Override
-                    public TableRow<employee> call(TableView<employee> tableView) {
-                        final TableRow<employee> row = new TableRow<>();
+                    public TableRow<parent> call(TableView<parent> tableView) {
+                        final TableRow<parent> row = new TableRow<>();
                         final ContextMenu rowMenu = new ContextMenu();
 
                         // "Borrow" menu items from table's context menu,
@@ -464,73 +420,77 @@ public class employeeDataForm {
                             rowMenu.getItems().add(new SeparatorMenuItem());
                         }
                         MenuItem editItem = new MenuItem("edit");
-                        editItem.setOnAction(e -> updateEmployee.updateEmployeePop());
+                        editItem.setOnAction(e -> updateParent.updateEmployeePop());
                         MenuItem suspend = new MenuItem("suspend");
                         suspend.setOnAction(
-                                e -> updateEmployee.updateEmployeePop()
+                                e -> updateParent.updateEmployeePop()
                         );
                         // editItem.setOnAction(...);
                         MenuItem removeItem = new MenuItem("delete");
-                        removeItem.setOnAction(e -> {
-
-                            if (row.getItem().getPosition() != "OFFICER" && row.getItem().getActiveStatus() == "ACTIVE") {
-
-                                Alert alert = new Alert(Alert.AlertType.WARNING);
-                                Label alertHead = new Label(row.getItem().getFirstName() + " " + row.getItem().getLastName() + " is a senior officer\n" +
-                                        " or has more rights");
-                                alertHead.setFont(Font.font("sans sif", FontWeight.BOLD, FontPosture.REGULAR, 7));
-                                Label alertcontent = new Label("the operation cannot be done");
-                                alert.setHeaderText(alertHead.getText());
-                                alertcontent.setFont(Font.font("sans sif", FontWeight.BOLD, FontPosture.REGULAR, 5));
-//alert.getStylesheets().add(MainView.class.getResource("MainView.css").toExternalForm());
-                                alert.setContentText(String.valueOf(alertcontent.getText()));
-                                alert.showAndWait();
-
-                            } else if (row.getItem().getActiveStatus() != "ACTIVE" && row.getItem().getPosition() == "ASSISTANT") {
-                                //remove from screen
-                                table.getItems().remove(row.getItem());
-
-                                //delete from database
-                                //  database.deleteEmployee.delete(row.getItem().getIdNumber());
-
-                                //delete all savings entries
-                                //database.deleteSavings.deleteAllSavings();
-
-
-                                //notify from taskbar
-                                String title = "EMPLOYEE DELETED FROM THE SYSTEM";
-                                String message = "NAME :" + row.getItem().getFirstName() + "" + row.getItem().getLastName();
-
-                                //  Image expenseimg = new Image("Expenses/price-tag-4.png");
-                                NotificationType type = NotificationType.SUCCESS;
-                                TrayNotification tray = new TrayNotification();
-                                tray.setTitle(title);
-                                tray.setMessage(message);
-                                //tray.setImage(expenseimg);
-                                tray.setAnimationType(AnimationType.FADE);
-                                tray.setNotificationType(type);
-                                tray.showAndDismiss(Duration.seconds(5));
-                            }
-//}else{
-//    Alert alert= new Alert(Alert.AlertType.WARNING);
-//    Label alertHead= new Label(row.getItem().getName()+" is an active member\n" +
-//            " or has a loan balance");
-//    alertHead.setFont(Font.font("sans sif", FontWeight.BOLD, FontPosture.REGULAR, 7));
+                        removeItem.setOnAction(e ->
+                                {
 //
-//    Label  alertcontent=  new Label("please ensure loan ammount "+row.getItem().getLoanbal()+"is cleared first");
-//    alertcontent.setFont(Font.font("sans sif", FontWeight.BOLD, FontPosture.REGULAR, 5));
-//    alert.setHeaderText(alertHead.getText());
+//                            if (row.getItem().getPosition() != "OFFICER" && row.getItem().getActiveStatus() == "ACTIVE") {
 //
+//                                Alert alert = new Alert(Alert.AlertType.WARNING);
+//                                Label alertHead = new Label(row.getItem().getFirstName() + " " + row.getItem().getLastName() + " is a senior officer\n" +
+//                                        " or has more rights");
+//                                alertHead.setFont(Font.font("sans sif", FontWeight.BOLD, FontPosture.REGULAR, 7));
+//                                Label alertcontent = new Label("the operation cannot be done");
+//                                alert.setHeaderText(alertHead.getText());
+//                                alertcontent.setFont(Font.font("sans sif", FontWeight.BOLD, FontPosture.REGULAR, 5));
 ////alert.getStylesheets().add(MainView.class.getResource("MainView.css").toExternalForm());
-//    alert.setContentText(String.valueOf(alertcontent.getText()));
-//    alert.showAndWait();
-//}
+//                                alert.setContentText(String.valueOf(alertcontent.getText()));
+//                                alert.showAndWait();
+//
+//                            } else if (row.getItem().getActiveStatus() != "ACTIVE" && row.getItem().getPosition() == "ASSISTANT") {
+//                                //remove from screen
+//                                table.getItems().remove(row.getItem());
+//
+//                                //delete from database
+//                                //  database.deleteEmployee.delete(row.getItem().getIdNumber());
+//
+//                                //delete all savings entries
+//                                //database.deleteSavings.deleteAllSavings();
+//
+//
+//                                //notify from taskbar
+//                                String title = "EMPLOYEE DELETED FROM THE SYSTEM";
+//                                String message = "NAME :" + row.getItem().getFirstName() + "" + row.getItem().getLastName();
+//
+//                                //  Image expenseimg = new Image("Expenses/price-tag-4.png");
+//                                NotificationType type = NotificationType.SUCCESS;
+//                                TrayNotification tray = new TrayNotification();
+//                                tray.setTitle(title);
+//                                tray.setMessage(message);
+//                                //tray.setImage(expenseimg);
+//                                tray.setAnimationType(AnimationType.FADE);
+//                                tray.setNotificationType(type);
+//                                tray.showAndDismiss(Duration.seconds(5));
+//                            }
+////}else{
+////    Alert alert= new Alert(Alert.AlertType.WARNING);
+////    Label alertHead= new Label(row.getItem().getName()+" is an active member\n" +
+////            " or has a loan balance");
+////    alertHead.setFont(Font.font("sans sif", FontWeight.BOLD, FontPosture.REGULAR, 7));
+////
+////    Label  alertcontent=  new Label("please ensure loan ammount "+row.getItem().getLoanbal()+"is cleared first");
+////    alertcontent.setFont(Font.font("sans sif", FontWeight.BOLD, FontPosture.REGULAR, 5));
+////    alert.setHeaderText(alertHead.getText());
+////
+//////alert.getStylesheets().add(MainView.class.getResource("MainView.css").toExternalForm());
+////    alert.setContentText(String.valueOf(alertcontent.getText()));
+////    alert.showAndWait();
+////}
+//
+//
+////37167568262
+//
+//
+                                }
+//
 
-
-//37167568262
-
-
-                        });
+                        );
 
                         rowMenu.getItems().addAll(editItem, removeItem);
 
@@ -636,17 +596,17 @@ public class employeeDataForm {
 
         MenuItem updates = new MenuItem("UPDATE EMPLOYEES");
         updates.setOnAction(e -> {
-            updateEmployee.updateEmployeePop();
-            updateEmployee.operations.getChildren().remove(updateEmployee.clear);
-            updateEmployee.operations.getChildren().remove(updateEmployee.delete);
-            updateEmployee.operations.getChildren().remove(updateEmployee.suspend);
+            updateParent.updateEmployeePop();
+            updateParent.operations.getChildren().remove(updateParent.clear);
+            updateParent.operations.getChildren().remove(updateParent.delete);
+            updateParent.operations.getChildren().remove(updateParent.suspend);
         });
         MenuItem quickupdate = new MenuItem("DELETE EMPLOYEE");
         quickupdate.setOnAction(e -> {
-            updateEmployee.updateEmployeePop();
-            updateEmployee.operations.getChildren().remove(updateEmployee.clear);
-            updateEmployee.operations.getChildren().remove(updateEmployee.update);
-            updateEmployee.operations.getChildren().remove(updateEmployee.suspend);
+            updateParent.updateEmployeePop();
+            updateParent.operations.getChildren().remove(updateParent.clear);
+            updateParent.operations.getChildren().remove(updateParent.update);
+            updateParent.operations.getChildren().remove(updateParent.suspend);
             //updateEmployee.operations.getChildren().addAll(updateEmployee.d)
 
 
@@ -787,7 +747,7 @@ public class employeeDataForm {
         updatebutton.getItems().addAll(quickupdate, updates);
         update.setGraphic(updatebutton);
         update.setOnAction(E -> {
-            updateEmployee.updateEmployeePop();
+            updateParent.updateEmployeePop();
         });
         MenuButton reportsButton = new MenuButton("REPORTS");
 
@@ -871,17 +831,17 @@ public class employeeDataForm {
 
         MenuItem deleteshort = new MenuItem("QUICK DELETE");
         deleteshort.setOnAction(e -> {
-            updateEmployee.updateEmployeePop();
+            updateParent.updateEmployeePop();
             //   updateEmployee.operations.getChildren().remove(updateEmployee.clear);
-            updateEmployee.operations.getChildren().remove(updateEmployee.update);
-            updateEmployee.operations.getChildren().remove(updateEmployee.suspend);
+            updateParent.operations.getChildren().remove(updateParent.update);
+            updateParent.operations.getChildren().remove(updateParent.suspend);
         });
 
         MenuItem allitemshort = new MenuItem("ALL EMPLOYEES");
 
         MenuItem updateshort = new MenuItem("UPDATE EMPLOYEES");
         updateshort.setOnAction(e -> {
-            updateEmployee.updateEmployeePop();
+            updateParent.updateEmployeePop();
         });
 
         TextField searchField = new TextField();
@@ -892,18 +852,18 @@ public class employeeDataForm {
             @Override
             public void invalidated(Observable observable) {
                 if (searchField.textProperty().get().isEmpty()) {
-                    table.setItems(employeeList.allEmployees());
+                    table.setItems(parentsList.allParents());
                     return;
                 }
-                ObservableList<employee> tableItems = FXCollections.observableArrayList();
-                ObservableList<TableColumn<employee, ?>> cols = table.getColumns();
-                for (int i = 0; i < employeeList.allEmployees().size(); i++) {
+                ObservableList<parent> tableItems = FXCollections.observableArrayList();
+                ObservableList<TableColumn<parent, ?>> cols = table.getColumns();
+                for (int i = 0; i < parentsList.allParents().size(); i++) {
                     for (int j = 0; j < cols.size(); j++) {
                         TableColumn col = cols.get(j);
-                        String cellValue = col.getCellData(employeeList.allEmployees().get(i)).toString();
+                        String cellValue = col.getCellData(parentsList.allParents().get(i)).toString();
                         cellValue = cellValue.toLowerCase();
                         if (cellValue.contains(searchField.textProperty().get().toLowerCase())) {
-                            tableItems.add(employeeList.allEmployees().get(i));
+                            tableItems.add(parentsList.allParents().get(i));
                             break;
                         }
                     }
@@ -1014,69 +974,13 @@ public class employeeDataForm {
             Platform.runLater(() -> {
                 idNumber.clear();
             });
-            emptyFieldError.RepeatedValue();
+            //  emptyFieldError.RepeatedValue();
         } else {
 
         }
     }
 
 
-    private static void verifyPassword() {
-
-        String password0 = password.getText().trim();
-        String password2 = password1.getText().trim();
-
-//
-//    Thread t = new Thread(() -> {
-//        while (true) {
-//            try {
-//                Thread.sleep(6000); // sleep 5 secs
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            Platform.runLater(() -> {   // Ensure data is updated on JavaFX thread
-//
-//     if(password2!=null&password2.matches(password0)){
-//            Platform.runLater(() -> {
-//                emptyFieldError.errorInPassword();
-//            });
-//
-//        }else{
-//
-//        }
-//
-//            });
-//        }
-//    });
-//    t.setDaemon(true);
-//    t.start();
-
-        if (password0 != password2) {
-            emptyFieldError.errorInPassword();
-        } else {
-
-        }
-    }
-
-    public static void addToFirebase() throws FirebaseException, JsonParseException, JsonMappingException, IOException, JacksonUtilityException {
-        ObjectMapper mapper = new ObjectMapper();
-
-        String firebase_baseUrl = "https://aluminium-loans.firebaseio.com/";
-
-
-        employee newEmployee = new employee(idNumber.getText().toUpperCase().trim(), employeeFirstName.getText().toUpperCase().trim(), secondName.getText().toUpperCase().trim(),
-                phoneNumber.getText().toUpperCase().trim(), residence.getText().trim().toUpperCase(), station.getText().toUpperCase().trim(), position.getValue().toString().toUpperCase(), activeStatus.getValue().toString().toUpperCase(),
-                maritalStatus.getValue().toString().toUpperCase(), Double.parseDouble(salary.getText()), 0.0, 0.0,
-                dob.getValue(), entryDate.getValue(), password1.getText().trim());
-
-        Map<String, Object> dataMap = mapper.convertValue(newEmployee, Map.class);
-
-        Firebase firebase = new Firebase(firebase_baseUrl);
-        FirebaseResponse response = firebase.delete();
-        response = firebase.post("EMPLOYEES", dataMap);
-        System.out.println("\n\nResult of PUT (for the test-PUT):\n" + response);
-
-    }
 
 
 }

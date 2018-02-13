@@ -25,7 +25,7 @@ import tray.notification.TrayNotification;
 /**
  * Created by FINETECHLABS on 01/04/2017.
  */
-public class updateEmployee extends Application {
+public class updateParent extends Application {
     public static TextField employeeFirstName;
     public static Label employeeFirstNamelbl;
     public static Label employeeLastNamelbl;
@@ -57,7 +57,7 @@ public class updateEmployee extends Application {
     public static Separator separatorTwo;
     public static Separator separatorThree;
     public static GridPane grid;
-    public static ComboBox<employee> allEmployees;
+    public static ComboBox<parent> allEmployees;
     public static Scene scene;
     public static Stage stage;
     private static TextArea Notes;
@@ -126,7 +126,7 @@ public class updateEmployee extends Application {
         separatorZero.setPadding(new Insets(5, 5, 5, 5));
         separatorZero.setOrientation(Orientation.VERTICAL);
         grid.addColumn(0, separatorZero);
-        allEmployees = new ComboBox<>(employeeList.allEmployees());
+        allEmployees = new ComboBox<parent>(parentsList.allParents());
         allEmployees.setMaxWidth(150);
         employeeId = new TextField();
         employeeId.setPromptText("   ID");
@@ -297,12 +297,12 @@ public class updateEmployee extends Application {
 
 
         allEmployees.setCellFactory(
-                new Callback<ListView<employee>, ListCell<employee>>() {
+                new Callback<ListView<parent>, ListCell<parent>>() {
                     @Override
-                    public ListCell<employee> call(ListView<employee> listView) {
-                        return new ListCell<employee>() {
+                    public ListCell<parent> call(ListView<parent> listView) {
+                        return new ListCell<parent>() {
                             @Override
-                            public void updateItem(employee item, boolean empty) {
+                            public void updateItem(parent item, boolean empty) {
                                 // Must call super
                                 super.updateItem(item, empty);
                                 int index = this.getIndex();
@@ -316,7 +316,7 @@ public class updateEmployee extends Application {
                                     name = (index + 1) + ". " +
                                             item.getFirstName() + " ";
 
-                                    description = "ID.NO:" + item.getIdNumber();
+                                    description = "ID.NO:" + item.getParentId();
                                 }
                                 // this.setText(name);
                                 Label namelbl = new Label();
@@ -339,23 +339,17 @@ public class updateEmployee extends Application {
                                 // firstName.setText(search.getSelectionModel().getSelectedItem().getFirstName());
                                 // lastName.setText(search.getSelectionModel().getSelectedItem().getLastName());
 
-                                allEmployees.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<employee>() {
+                                allEmployees.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<parent>() {
                                     @Override
-                                    public void changed(ObservableValue<? extends employee> observable, employee oldValue, employee newValue) {
-                                        //String c= expenseSearch.getSelectionModel().getSelectedItem().getLoanAmmount()-loanSearch.getSelectionModel().getSelectedItem().getPaidback()+"";
-                                        //   paidback.setText(expenseSearch.getSelectionModel().getSelectedItem().getPaidback()+"");
-//                                        String bal=(expenseSearch.getSelectionModel().getSelectedItem().getExpenseTotal())-(expenseSearch.getSelectionModel().getSelectedItem().getPaidback())+"";
-//                                        balance.setText(bal);
-//                                        expenseName.setText(expenseSearch.getSelectionModel().getSelectedItem().getExpenseName());
-//                                        paidback.setText(expenseSearch.getSelectionModel().getSelectedItem().getPaidback()+"");
+                                    public void changed(ObservableValue<? extends parent> observable, parent oldValue, parent newValue) {
 
 
-                                        employeeId.setText(allEmployees.getSelectionModel().getSelectedItem().getIdNumber() + "");
+                                        employeeId.setText(allEmployees.getSelectionModel().getSelectedItem().getNationalIdentifiaction() + "");
                                         phoneNumber.setText(allEmployees.getSelectionModel().getSelectedItem().getPhoneNumber() + "");
-                                        residence.setText(allEmployees.getSelectionModel().getSelectedItem().getResidence() + "");
+                                        residence.setText(allEmployees.getSelectionModel().getSelectedItem().getHomeAdress() + "");
                                         employeeFirstName.setText(allEmployees.getSelectionModel().getSelectedItem().getFirstName() + "");
                                         employeeLastName.setText(allEmployees.getSelectionModel().getSelectedItem().getLastName() + "");
-                                        salary.setText(allEmployees.getSelectionModel().getSelectedItem().getSalary() + "");
+                                        //salary.setText(allEmployees.getSelectionModel().getSelectedItem().getSalary() + "");
 //                                        expenseId.setText(expenseSearch.getSelectionModel().getSelectedItem().getExpenseID());
 //                                        expenseAmmount.setText(expenseSearch.getSelectionModel().getSelectedItem().getExpenseTotal()+"");
 //
