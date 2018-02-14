@@ -1,7 +1,7 @@
 package database;
 
+import guardians.parent;
 import org.apache.commons.dbutils.DbUtils;
-import parents.parent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

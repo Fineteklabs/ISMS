@@ -80,7 +80,7 @@ public class parentsDataForm {
     public static VBox Add() {
         GridPane grid = new GridPane();
         Adding = new VBox();
-        employeeFirstNamelbl = new Label(" FIRST NAME");
+        employeeFirstNamelbl = new Label(" first name");
         employeeFirstName = new TextField();
 
 
@@ -88,7 +88,7 @@ public class parentsDataForm {
         employeeFirstName.setPrefColumnCount(8);
         grid.addColumn(0, employeeFirstNamelbl, employeeFirstName);
 
-        secondNamelbl = new Label("LAST NAME");
+        secondNamelbl = new Label("last name");
         secondName = new TextField() {
 
             @Override
@@ -109,7 +109,7 @@ public class parentsDataForm {
         grid.addColumn(0, secondNamelbl, secondName);
 
 
-        idNumberlbl = new Label("ID NUMBER");
+        idNumberlbl = new Label("id number");
         idNumber = new TextField();
         grid.addColumn(0, idNumberlbl, idNumber);
 
@@ -117,14 +117,14 @@ public class parentsDataForm {
                 (observable, oldValue, newValue) ->
                         search(idNumber.getText().toUpperCase().trim())
         );
-        maritalStatuslbl = new Label("MARITAL STATUS");
+        maritalStatuslbl = new Label("Roles");
         maritalStatus = new ComboBox();
         maritalStatus.getItems().addAll("MARRIED", "SINGLE");
         maritalStatus.setMinWidth(150);
         grid.addColumn(1, maritalStatuslbl, maritalStatus);
 
 
-        phonenumberlbl = new Label("PHONE NUMBER");
+        phonenumberlbl = new Label("phone number");
         phoneNumber = new TextField() {
             final int maxChars = 13;
             final String restictTo = "[ 0-9,0-9 +]*";
@@ -152,20 +152,20 @@ public class parentsDataForm {
         grid.addColumn(1, phonenumberlbl, phoneNumber);
 
 
-        residencelbl = new Label("RESIDENCE");
+        residencelbl = new Label("home adress");
         residence = new TextField();
 
 
         grid.addColumn(2, residencelbl, residence);
         grid.setPadding(new Insets(20, 20, 50, 20));
-        stationlbl = new Label("STATION");
+        stationlbl = new Label("station");
         station = new TextField();
 
 
         station.setPromptText("station of work");
         grid.addColumn(2, stationlbl, station);
 
-        activeStatuslbl = new Label("ACTIVE STATUS");
+        activeStatuslbl = new Label("active status");
         activeStatus = new ComboBox<>();
         activeStatus.setMinWidth(150);
         activeStatus.getItems().addAll("ACTIVE", "SUSPENDED");
@@ -201,7 +201,7 @@ public class parentsDataForm {
         entryDate = new DatePicker();
         entryDate.setDayCellFactory(dayCellFactory);
         entryDate.setEditable(false);
-        entryDatelbl = new Label("RECRUITMENT DATE  ");
+        entryDatelbl = new Label("registration date  ");
         grid.addColumn(3, entryDatelbl, entryDate);
 
 
@@ -210,11 +210,11 @@ public class parentsDataForm {
         grid.addColumn(3, doblbl, dob);
 
 
-        salarylbl = new Label("SALARY");
+        salarylbl = new Label("email address");
         salary = new TextField();
         grid.addColumn(4, salarylbl, salary);
 
-        positionlbl = new Label("POSITION");
+        positionlbl = new Label("Category");
 
         position = new ComboBox();
         position.getItems().addAll("ASSISTANT", "OFFICER", "SENIOR OFFICER", "MANAGER");
@@ -342,7 +342,8 @@ public class parentsDataForm {
         grid.addColumn(5, save, clear, cancel);
 
         grid.setVgap(10);
-        grid.setHgap(15);
+        grid.setHgap(20
+        );
         Adding.getChildren().addAll(grid);
         return Adding;
     }
@@ -368,7 +369,7 @@ public class parentsDataForm {
                 parentsList.getPhoneNumber(),
                 parentsList.getEmailAddress(),
                 parentsList.getPostalAddress(),
-                parentsList.getPhoneNumber(),
+                parentsList.getMobileNumber(),
                 parentsList.getActiveStatus()
 
         );
@@ -566,7 +567,7 @@ public class parentsDataForm {
 
         });
 
-        MenuItem updates = new MenuItem("Update guardians");
+        MenuItem updates = new MenuItem("update guardians");
         updates.setOnAction(e -> {
             updateParent.updateEmployeePop();
             updateParent.operations.getChildren().remove(updateParent.clear);
@@ -705,7 +706,7 @@ public class parentsDataForm {
             thread.start();
         });
 
-        MenuButton savingsButton = new MenuButton("SALARIES");
+        MenuButton savingsButton = new MenuButton("PAYMENTS");
         savingsButton.getItems().addAll(addSavings, savingsHistory);
         add.setGraphic(savingsButton);
 
@@ -795,13 +796,13 @@ public class parentsDataForm {
 
 
         //  home button content items
-        MenuItem addshort = new MenuItem("ADD EMPLOYEE");
+        MenuItem addshort = new MenuItem("add  parents");
         addshort.setOnAction(e -> {
             employeeFirstName.requestFocus();
             employeeFirstName.requestFocus();
         });
 
-        MenuItem deleteshort = new MenuItem("QUICK DELETE");
+        MenuItem deleteshort = new MenuItem("quick delete");
         deleteshort.setOnAction(e -> {
             updateParent.updateEmployeePop();
             //   updateEmployee.operations.getChildren().remove(updateEmployee.clear);
@@ -809,9 +810,9 @@ public class parentsDataForm {
             updateParent.operations.getChildren().remove(updateParent.suspend);
         });
 
-        MenuItem allitemshort = new MenuItem("ALL EMPLOYEES");
+        MenuItem allitemshort = new MenuItem("all  parents");
 
-        MenuItem updateshort = new MenuItem("UPDATE EMPLOYEES");
+        MenuItem updateshort = new MenuItem("update parents");
         updateshort.setOnAction(e -> {
             updateParent.updateEmployeePop();
         });

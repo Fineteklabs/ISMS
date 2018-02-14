@@ -4,6 +4,7 @@ package schools;
  * Created by FINETEKLABS on 12/24/2017.
  */
 
+import classification.examView;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.svg.SVGGlyph;
 import javafx.application.Application;
@@ -102,17 +103,18 @@ public class schoolApp extends Application {
         employeeView employees = new employeeView("EMPLOYEES");
         guardians.parentView myparents = new guardians.parentView("GUARDIANS");
         student_view students = new student_view(momanyi, "STUDENTS CENTER");
+        examView myexams = new examView("EXAMS");
         level_view levels = new level_view(mylevels, "CLASSES");
         school_view views = new school_view(myschool, "SCHOOL INFORMATION");
         parent_view parents = new parent_view(myparent, "PARENT CENTER");
         views.closableProperty().set(false);
 
-        tabs.getTabs().addAll(views, students, parents, levels, myparents, employees);
+        tabs.getTabs().addAll(views, students, parents, levels, myexams, myparents, employees);
         BorderPane border = new BorderPane();
         border.setCenter(tabs);
 
         border.setTop(TopMenu());
-        scene = new Scene(border, 900, 650);
+        scene = new Scene(border, 1200, 800);
 
         scene.getStylesheets().add(schoolApp.class.getResource("/resources/css/jfoenix-components.css").toExternalForm());
 
@@ -126,7 +128,7 @@ public class schoolApp extends Application {
         mainStage.minHeightProperty().bind(scene.widthProperty().divide(1.5));
         mainStage.setAlwaysOnTop(true);
 //        stage.initModality(Modality.APPLICATION_MODAL);
-        mainStage.resizableProperty().setValue(false);
+        //  mainStage.resizableProperty().setValue(false);
         mainStage.setScene(scene);
         mainStage.setTitle("SETTINGS");
         mainStage.show();

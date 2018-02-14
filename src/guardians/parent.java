@@ -1,13 +1,17 @@
 package guardians;
 
+import database.saveParent;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by FINETEKLABS on 12/4/2017.
  */
 public class parent {
-
+    private static ExecutorService executor;
     private StringProperty parentId = new SimpleStringProperty(this, "parentId", null);
     ;
     private StringProperty firstName = new SimpleStringProperty(this, "firstName", null);
@@ -51,12 +55,10 @@ public class parent {
         this.password.set(password);
     }
 
-    ;
-
-
     public parent() {
-        this(" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ");
+
     }
+
 
     public String getFirstName() {
         return firstName.get();
@@ -221,6 +223,18 @@ public class parent {
 
     }
 
+    public void save() {
+
+
+        executor = Executors.newFixedThreadPool(2);
+        executor.execute(new saveParent(this));
+
+
+        //save to db
+        //save to db
+
+
+    }
     public enum Roles {
         GUARDIAN, PARENT, SPONSOR, SIBLING, OFFICIAL,
     }

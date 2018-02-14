@@ -2,14 +2,11 @@ package guardians;
 
 /**
  * Created by FINETECHLABS on 04/01/2017.
- * <p>
- * Created by FINETECHLABS on 31/08/2016.
+
  */
 
 
-/**
- * Created by FINETECHLABS on 31/08/2016.
- */
+
 
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -130,55 +127,6 @@ public class parentsList extends Task<ObservableList<parent>> {
     }
 
 
-//    public static TableColumn<employee, String> getConductor() {
-//        TableColumn<employee, String> memberFirstNameColumn = new TableColumn<>("CONDUCTOR");
-//        memberFirstNameColumn.setCellValueFactory(cellData -> {
-//            employee ms = cellData.getValue();
-//            String firstname = ms.getConductorFirstName();
-//            String lastname = ms.getConductorLastName();
-//            String  phone= ms.getConductorPhoneNumber();
-//            String name = firstname + " " + lastname+ " "+phone;
-//            return new ReadOnlyStringWrapper(name);
-//        });
-//        return memberFirstNameColumn;
-//    }
-
-    // return the  date
-//    public static TableColumn<Member, String> getBirthDateColumn() {
-//        TableColumn<Member, String> bDateCol =
-//                new TableColumn<>("AGE");
-//        bDateCol.setCellValueFactory(cellData -> {
-//            Member ms = cellData.getValue();
-//            LocalDate dob = ms.getDob();
-//            String ageInYear = "Unknown";
-//            if (dob != null) {
-//                long years = YEARS.between(dob, LocalDate.now());
-//                if (years == 0) {
-//                    ageInYear = "< 1 year";
-//                } else if (years == 1) {
-//                    ageInYear = years + " year";
-//                } else {
-//                    ageInYear = years + " years";
-//                }
-//            }
-//            return new ReadOnlyStringWrapper(ageInYear);
-//        });
-//
-//
-//        return bDateCol;
-//    }
-//    public static TableColumn<employee, String> getDriver() {
-//        TableColumn<employee, String> getNames = new TableColumn<>("DRIVER");
-//        getNames.setCellValueFactory(cellData -> {
-//            employee ms = cellData.getValue();
-//            String firstname= ms.getDriverFirstName();
-//            String lastname= ms.getDriverLastName();
-//            String phone= ms.getDriverPhoneNumber();
-//            String name = firstname + " " + lastname+ " "+phone;
-//            return new ReadOnlyStringWrapper(name);
-//        });
-//        return getNames;
-//    }
     //residence
     public static TableColumn<parent, String> getOccupation() {
         TableColumn<parent, String> memberResidenceColumn = new TableColumn<>("occupation");
@@ -187,7 +135,7 @@ public class parentsList extends Task<ObservableList<parent>> {
     }
 
     public static TableColumn<parent, String> getPostalAddress() {
-        TableColumn<parent, String> memberResidenceColumn = new TableColumn<>("postal add");
+        TableColumn<parent, String> memberResidenceColumn = new TableColumn<>("postal address");
         memberResidenceColumn.setCellValueFactory(new PropertyValueFactory<>("postalAddress"));
         return memberResidenceColumn;
     }
@@ -202,7 +150,7 @@ public class parentsList extends Task<ObservableList<parent>> {
 
 
     public static TableColumn<parent, String> getPhoneNumber() {
-        TableColumn<parent, String> memberFineColumn = new TableColumn<>("tel");
+        TableColumn<parent, String> memberFineColumn = new TableColumn<>("telephone");
         memberFineColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         return memberFineColumn;
     }
