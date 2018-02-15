@@ -47,6 +47,47 @@ public class saveStudent implements Runnable {
         this.admissionDate = momanyi.getAdmissionDate();
     }
 
+
+    public void savetoMysql() {
+        PreparedStatement pstmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            conn = currentDb.mysql_connection();
+            lock.lock();
+            Thread.sleep(1000);
+            String sql = "INSERT INTO   (   studentId, firstName,middleName, lastName,  parentId,email,currentClassId,home, admissionDate, clearanceDate, dateOfBirth,activeState) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, studentId);
+            pstmt.setString(2, firstName);
+            pstmt.setString(3, middleName);
+            pstmt.setString(4, lastName);
+            pstmt.setString(5, parentId);
+            pstmt.setString(6, email);
+            pstmt.setString(7, currentClassId);
+            pstmt.setString(8, home);
+            pstmt.setDate(9, java.sql.Date.valueOf(admissionDate));
+            pstmt.setDate(10, java.sql.Date.valueOf(clearanceDate));
+            pstmt.setDate(11, java.sql.Date.valueOf(dateOfBirth));
+            pstmt.setString(12, activeState);
+
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            DbUtils.closeQuietly(rs);
+            DbUtils.closeQuietly(pstmt);
+            DbUtils.closeQuietly(conn);
+            lock.unlock();
+        }
+    }
+
     @Override
     public void run() {
         PreparedStatement pstmt = null;

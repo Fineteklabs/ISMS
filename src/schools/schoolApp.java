@@ -23,6 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import levels.level;
 import levels.level_view;
+import members.studentView;
 import org.apache.log4j.BasicConfigurator;
 import parents.parent;
 import parents.parent_view;
@@ -107,9 +108,10 @@ public class schoolApp extends Application {
         level_view levels = new level_view(mylevels, "CLASSES");
         school_view views = new school_view(myschool, "SCHOOL INFORMATION");
         parent_view parents = new parent_view(myparent, "PARENT CENTER");
+        studentView members = new studentView("STUDENTS");
         views.closableProperty().set(false);
 
-        tabs.getTabs().addAll(views, students, parents, levels, myexams, myparents, employees);
+        tabs.getTabs().addAll(views, students, parents, members);
         BorderPane border = new BorderPane();
         border.setCenter(tabs);
 

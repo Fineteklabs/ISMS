@@ -1,10 +1,6 @@
-package students;
+package members;
 
-import database.saveStudent;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,10 +14,14 @@ import java.util.concurrent.Executors;
 public class student {
     private static ExecutorService executor;
     private final StringProperty firstName = new SimpleStringProperty(this, "firstName", null);
-    ;
+    private final StringProperty stream = new SimpleStringProperty(this, "stream", null);
+    private final IntegerProperty active = new SimpleIntegerProperty(this, "active", 1);
     private final StringProperty lastName = new SimpleStringProperty(this, "lastName", null);
+    private final StringProperty fullName = new SimpleStringProperty(this, "full_name", null);
+    private final StringProperty admissionNumber = new SimpleStringProperty(this, "admissionNumber", null);
+
     private final StringProperty middleName = new SimpleStringProperty(this, "middleName", null);
-    private final StringProperty studentId = new SimpleStringProperty(this, "studentId", null);
+    private final IntegerProperty studentId = new SimpleIntegerProperty(this, "studentId", 0);
     private final StringProperty parentId = new SimpleStringProperty(this, "parentId", null);
     private final StringProperty home = new SimpleStringProperty(this, "home", null);
     private final ObjectProperty<LocalDate> dateOfBirth = new SimpleObjectProperty<>(this, "dateOfBirth", null);
@@ -29,10 +29,11 @@ public class student {
     private final StringProperty activeState = new SimpleStringProperty(this, "activeState", null);
     private final StringProperty currentClassId = new SimpleStringProperty(this, "currentClassId", null);
     private final StringProperty currentStream = new SimpleStringProperty(this, "currentStream,null");
-    private final ObjectProperty<LocalDate> admissionDate = new SimpleObjectProperty<>(this, "admissionDate", null);
+    private final StringProperty admissionDate = new SimpleStringProperty(this, "admissionDate", null);
+    private final ObjectProperty<LocalDate> entryDate = new SimpleObjectProperty<>(this, "clearanceDate", null);
     private final ObjectProperty<LocalDate> clearanceDate = new SimpleObjectProperty<>(this, "clearanceDate", null);
 
-    public student(String studentId, String firstName, String middleName, String lastName, String parentId, String email, String currentClassId, String home, LocalDate admissionDate, LocalDate clearanceDate, LocalDate dateOfBirth, String activeState) {
+    public student(int studentId, String firstName, String middleName, String lastName, String parentId, String email, String currentClassId, String home, String admissionDate, LocalDate clearanceDate, LocalDate dateOfBirth, String activeState) {
         this.studentId.set(studentId);
         this.firstName.set(firstName);
         this.middleName.set(middleName);
@@ -47,8 +48,60 @@ public class student {
         this.admissionDate.set(admissionDate);
     }
 
+    public student(int studentId, String fullName, String admissionNumber, LocalDate dob, String entryDate, LocalDate creationDate) {
+        this.studentId.set(studentId);
+        this.fullName.set(fullName);
+        this.admissionNumber.set(admissionNumber);
+        this.dateOfBirth.set(dob);
+        this.admissionDate.set(entryDate);
+        this.entryDate.set(creationDate);
+    }
+
+    public student(int studentId, String fullName, String admissionNumber, String currentClass, LocalDate dob, String entryDate, LocalDate creationDate) {
+        this.studentId.set(studentId);
+        this.fullName.set(fullName);
+        this.admissionNumber.set(admissionNumber);
+        this.dateOfBirth.set(dob);
+        this.admissionDate.set(entryDate);
+        this.entryDate.set(creationDate);
+        this.currentClassId.set(currentClass);
+    }
+
+    public student(int studentId, String fullName, String admissionNumber, String currentClass, String stream, LocalDate dob, String entryDate, LocalDate creationDate) {
+        this.studentId.set(studentId);
+        this.fullName.set(fullName);
+        this.admissionNumber.set(admissionNumber);
+        this.dateOfBirth.set(dob);
+        this.admissionDate.set(entryDate);
+        this.entryDate.set(creationDate);
+        this.currentClassId.set(currentClass);
+        this.stream.set(stream);
+    }
+
+
+    public student(int studentId, String fullName, String admissionNumber, String currentClass, String stream, LocalDate dob, String entryDate, LocalDate creationDate, int activeStatus) {
+        this.studentId.set(studentId);
+        this.fullName.set(fullName);
+        this.admissionNumber.set(admissionNumber);
+        this.dateOfBirth.set(dob);
+        this.admissionDate.set(entryDate);
+        this.entryDate.set(creationDate);
+        this.currentClassId.set(currentClass);
+        this.stream.set(stream);
+        this.active.set(activeStatus);
+    }
+
+
     public student() {
-        this(null, null, null, null, null, null, null, null, null, null, null, null);
+        this(0, null, null, null, null, null, null, null, null, null, null, null);
+    }
+
+    public static ExecutorService getExecutor() {
+        return executor;
+    }
+
+    public static void setExecutor(ExecutorService executor) {
+        student.executor = executor;
     }
 
     public String getFirstName() {
@@ -123,16 +176,76 @@ public class student {
         return email;
     }
 
-    public String getStudentId() {
+    public int getActive() {
+        return active.get();
+    }
+
+    public void setActive(int active) {
+        this.active.set(active);
+    }
+
+    public IntegerProperty activeProperty() {
+        return active;
+    }
+
+    public String getStream() {
+        return stream.get();
+    }
+
+    public void setStream(String stream) {
+        this.stream.set(stream);
+    }
+
+    public StringProperty streamProperty() {
+        return stream;
+    }
+
+    public String getFullName() {
+        return fullName.get();
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName.set(fullName);
+    }
+
+    public StringProperty fullNameProperty() {
+        return fullName;
+    }
+
+    public String getAdmissionNumber() {
+        return admissionNumber.get();
+    }
+
+    public void setAdmissionNumber(String admissionNumber) {
+        this.admissionNumber.set(admissionNumber);
+    }
+
+    public StringProperty admissionNumberProperty() {
+        return admissionNumber;
+    }
+
+    public int getStudentId() {
         return studentId.get();
     }
 
-    public void setStudentId(String studentId) {
+    public void setStudentId(int studentId) {
         this.studentId.set(studentId);
     }
 
-    public StringProperty studentIdProperty() {
+    public IntegerProperty studentIdProperty() {
         return studentId;
+    }
+
+    public LocalDate getEntryDate() {
+        return entryDate.get();
+    }
+
+    public void setEntryDate(LocalDate entryDate) {
+        this.entryDate.set(entryDate);
+    }
+
+    public ObjectProperty<LocalDate> entryDateProperty() {
+        return entryDate;
     }
 
     public String getParentId() {
@@ -155,19 +268,20 @@ public class student {
         this.activeState.set(activeState);
     }
 
+
     public StringProperty activeStateProperty() {
         return activeState;
     }
 
-    public LocalDate getAdmissionDate() {
+    public String getAdmissionDate() {
         return admissionDate.get();
     }
 
-    public void setAdmissionDate(LocalDate admissionDate) {
+    public void setAdmissionDate(String admissionDate) {
         this.admissionDate.set(admissionDate);
     }
 
-    public ObjectProperty<LocalDate> admissionDateProperty() {
+    public StringProperty admissionDateProperty() {
         return admissionDate;
     }
 
@@ -224,26 +338,6 @@ public class student {
         return true;
     }
 
-//    public AgeCategory getAgeCategory() {
-//        if (dateOfBirth.get() == null) {
-//            return AgeCategory.UNKNOWN;
-//        }
-//        long years = ChronoUnit.YEARS.between(dateOfBirth.get(), LocalDate.now());
-//        if (years >= 0 && years < 2) {
-//            return AgeCategory.BABY;
-//        } else if (years >= 2 && years < 13) {
-//            return AgeCategory.CHILD;
-//        } else if (years >= 13 && years <= 19) {
-//            return AgeCategory.TEEN;
-//        } else if (years > 19 && years <= 50) {
-//            return AgeCategory.ADULT;
-//            return AgeCategory.SENIOR;
-//        } else if (years > 50) {
-//        } else {
-//            return AgeCategory.UNKNOWN;
-//        }
-//        return AgeCategory;
-//    }
 
     public Boolean isValidStudent(student momanyi, List<String> errorList) {
         boolean isValid = true;
@@ -253,9 +347,9 @@ public class student {
             errorList.add(" student  name must contain atleast five characters");
             isValid = false;
         }
-        String sid = momanyi.getStudentId();
+        Integer sid = momanyi.getStudentId();
 
-        if (sid == null || sid.trim().length() < 3) {
+        if (sid == null || sid < 3) {
             errorList.add(" you've not assigned a valid student id");
 
         }
@@ -286,7 +380,7 @@ public class student {
 
         if (isValidStudent(errorList)) {
             executor = Executors.newFixedThreadPool(2);
-            executor.execute(new saveStudent(momanyi));
+            // executor.execute(new saveStudent(momanyi));
             isSaved = true;
         }
 
@@ -301,9 +395,9 @@ public class student {
                 ", clearance" + clearanceDate.get();
 
     }
+
     public enum AgeCategory {
         BABY, CHILD, TEEN, ADULT, SENIOR, UNKNOWN
     }
-
 
 }
