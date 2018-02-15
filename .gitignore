@@ -14,3 +14,37 @@ out
 /src/members
 
 gen
+### Java template
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+.idea/artifacts/
+.idea/dataSources.local.xml
+.idea/dataSources/47fd927b-eccc-4662-8e6b-3f88399d697a/_src_/
+.idea/dataSources/47fd927b-eccc-4662-8e6b-3f88399d697a/_staging_/
+.idea/dataSources/b49168df-d993-4c2c-ac81-5e73a7234d26/_src_/
+.idea/dataSources/b49168df-d993-4c2c-ac81-5e73a7234d26/_staging_/
+.idea/inspectionProfiles/
+.idea/workspace.xml
+out/
+src/payments/
