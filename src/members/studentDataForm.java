@@ -922,13 +922,13 @@ public class studentDataForm {
                 }
                 ObservableList<student> tableItems = FXCollections.observableArrayList();
                 ObservableList<TableColumn<student, ?>> cols = table.getColumns();
-                for (int i = 0; i < studentList.allStudents().size(); i++) {
+                for (int i = 0; i < studentList.student_with_classes().size(); i++) {
                     for (int j = 0; j < cols.size(); j++) {
                         TableColumn col = cols.get(j);
-                        String cellValue = col.getCellData(studentList.allStudents().get(i)).toString();
+                        String cellValue = col.getCellData(studentList.student_with_classes().get(i)).toString();
                         cellValue = cellValue.toLowerCase();
                         if (cellValue.contains(searchField.textProperty().get().toLowerCase())) {
-                            tableItems.add(studentList.allStudents().get(i));
+                            tableItems.add(studentList.student_with_classes().get(i));
                             break;
                         }
 
