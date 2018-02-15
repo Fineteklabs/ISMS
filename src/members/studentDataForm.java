@@ -942,7 +942,6 @@ public class studentDataForm {
 
         bar.getMenus().addAll(home, add, delete, update, reports, search);
 //bar.setPadding(new Insets(10,10,10,10));
-
         return bar;
     }
 
