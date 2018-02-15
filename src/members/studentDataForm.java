@@ -946,42 +946,6 @@ public class studentDataForm {
     }
 
 
-//    public static void insert( String  registrationNumber, String vehicleModel, int vehicleSeats,String ownerIdNumber,  String ownerFirstName,
-//                               String ownerLastName,String ownerPhoneNumber, String driverIdNumber,String driverFirstName,String driverLastName,String driverPhoneNumber,String conductorIdNumber,String conductorFirstName,
-//                               String conductorLastName,   Double totalContributions, double loanBalance, double outStandingFine,
-//                               double serviceCharges,LocalDate entryDate) {
-//        String sql = "INSERT INTO vehicles (  registrationNumber, vehicleModel, vehicleSeats,ownerIdNumber,  ownerFirstName,\n" +
-//                "                                   ownerLastName,ownerPhoneNumber,  driverIdNumber, driverFirstName, driverLastName, driverPhoneNumber, conductorIdNumber,String conductorFirstName,\n" +
-//                "                                  conductorLastName, totalContributions,  loanBalance, outStandingFine,\n" +
-//                "                                   serviceCharges, entryDate) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-//
-//        try (Connection conn =  connect();
-//             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, registrationNumber);
-//            pstmt.setString(2, vehicleModel);
-//            pstmt.setInt(3, vehicleSeats);
-//            pstmt.setString(4, ownerIdNumber);
-//            pstmt.setDate(5, java.sql.Date.valueOf(entryDate));
-//            pstmt.setString(6,ownerLastName);
-//            pstmt.setString(7,ownerPhoneNumber);
-//            pstmt.setString(8,driverIdNumber);
-//            pstmt.setString(9,driverFirstName);
-//            pstmt.setString(10,ownerFirstName);
-//            pstmt.setString(11,driverLastName);
-//            pstmt.setString(12,driverPhoneNumber);
-//            pstmt.setString(13,conductorIdNumber);
-//            pstmt.setString(14,conductorFirstName);
-//            pstmt.setString(15,conductorLastName);
-//            pstmt.setDouble(16,totalContributions);
-//            pstmt.setDouble(17,loanBalance);
-//            pstmt.setDouble(18,outStandingFine);
-//            pstmt.setDouble(19,serviceCharges);
-//            pstmt.executeUpdate();
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
-
 
     private static void search(String searchText) {
         Connection conn = null;
@@ -993,14 +957,14 @@ public class studentDataForm {
             conn = database.currentDb.mysql_connection();
 
             statement = conn.createStatement();
-            String s = "SELECT admission_number FROM  sims.students";
+            String s = "SELECT id FROM  sims.students";
 
             rs = statement.executeQuery(s);
             int g = 0;
 
             while (rs.next()) {
                 String steve = (
-                        rs.getString("idNumber")
+                        rs.getString("id")
 
 
                 );
@@ -1023,7 +987,7 @@ public class studentDataForm {
         //search the ob list
         if (members.contains(searchText) == true) {
             Platform.runLater(() -> {
-                //  idNumber.clear();
+                idNumber.clear();
             });
             emptyFieldError.RepeatedValue();
         } else {
