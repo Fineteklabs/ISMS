@@ -22,14 +22,14 @@ public class studentList extends Task<ObservableList<student>> {
 
 
     // RETURN ids
-    public static TableColumn<student, Integer> getIdColumn() {
-        TableColumn<student, Integer> memberIdColumn = new TableColumn<>("student id");
-        memberIdColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
-
-        return memberIdColumn;
-
-
-    }
+//    public static TableColumn<student, Integer> getIdColumn() {
+//        TableColumn<student, Integer> memberIdColumn = new TableColumn<>("student id");
+//        memberIdColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
+//
+//        return memberIdColumn;
+//
+//
+//    }
 
     public static TableColumn<student, String> getStream() {
         TableColumn<student, String> memberIdColumn = new TableColumn<>("stream");
@@ -74,31 +74,31 @@ public class studentList extends Task<ObservableList<student>> {
     }
 
     // return  names
-    public static TableColumn<student, String> getNameColumn() {
-        TableColumn<student, String> memberFirstNameColumn = new TableColumn<>("Full Name");
-        memberFirstNameColumn.setCellValueFactory(cellData -> {
-            student ms = cellData.getValue();
-            String firstname = ms.getFirstName();
-            String lastname = ms.getLastName();
-
-            String name = firstname + " " + lastname;
-            return new ReadOnlyStringWrapper(name);
-        });
-
-
-        memberFirstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        memberFirstNameColumn.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<student, String>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<student, String> t) {
-                        ((student) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setFirstName(t.getNewValue());
-                    }
-                }
-        );
-        return memberFirstNameColumn;
-    }
+//    public static TableColumn<student, String> getNameColumn() {
+//        TableColumn<student, String> memberFirstNameColumn = new TableColumn<>("Full Name");
+//        memberFirstNameColumn.setCellValueFactory(cellData -> {
+//            student ms = cellData.getValue();
+//            String firstname = ms.getFirstName();
+//            String lastname = ms.getLastName();
+//
+//            String name = firstname + " " + lastname;
+//            return new ReadOnlyStringWrapper(name);
+//        });
+//
+//
+//        memberFirstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        memberFirstNameColumn.setOnEditCommit(
+//                new EventHandler<TableColumn.CellEditEvent<student, String>>() {
+//                    @Override
+//                    public void handle(TableColumn.CellEditEvent<student, String> t) {
+//                        ((student) t.getTableView().getItems().get(
+//                                t.getTablePosition().getRow())
+//                        ).setFirstName(t.getNewValue());
+//                    }
+//                }
+//        );
+//        return memberFirstNameColumn;
+//    }
 
 
 //    public static TableColumn<student, String> getName() {
@@ -147,11 +147,6 @@ public class studentList extends Task<ObservableList<student>> {
     }
 
 
-//    public static TableColumn<student, String> getActiveStatus() {
-//        TableColumn<student, String> memberFineColumn = new TableColumn<>("active state");
-//        memberFineColumn.setCellValueFactory(new PropertyValueFactory<>("activeStatus"));
-//        return memberFineColumn;
-//    }
 
 
     public static TableColumn<student, String> getAdmissionDate() {

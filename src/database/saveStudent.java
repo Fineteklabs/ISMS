@@ -1,7 +1,7 @@
 package database;
 
+import members.student;
 import org.apache.commons.dbutils.DbUtils;
-import students.student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,33 +18,24 @@ public class saveStudent implements Runnable {
     private static Lock lock = new ReentrantLock();
 
 
-    private String studentId;
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private String parentId;
-    private String email;
-    private String currentClassId;
-    private String activeState;
-    private String home;
-    private LocalDate clearanceDate;
+    private int studentId;
+
+    private String fullName;
+    private int activeState;
+    private String admissionNumber;
+    private String admissionDate;
     private LocalDate dateOfBirth;
-    private LocalDate admissionDate;
+    private LocalDate creationDate;
 
 
     public saveStudent(student momanyi) {
         this.studentId = momanyi.getStudentId();
-        this.firstName = momanyi.getFirstName();
-        this.lastName = momanyi.getLastName();
-        this.middleName = momanyi.getMiddleName();
-        this.parentId = momanyi.getParentId();
-        this.email = momanyi.getEmail();
-        this.currentClassId = momanyi.getCurrentClassId();
-        this.activeState = momanyi.getActiveState();
-        this.home = momanyi.getHome();
-        this.clearanceDate = momanyi.getClearanceDate();
-        this.dateOfBirth = momanyi.getDateOfBirth();
+        this.fullName = momanyi.getFullName();
+        this.activeState = momanyi.getActive();
         this.admissionDate = momanyi.getAdmissionDate();
+        this.dateOfBirth = momanyi.getDateOfBirth();
+        this.admissionNumber = momanyi.getAdmissionNumber();
+
     }
 
 
@@ -57,21 +48,17 @@ public class saveStudent implements Runnable {
             conn = currentDb.mysql_connection();
             lock.lock();
             Thread.sleep(1000);
-            String sql = "INSERT INTO   (   studentId, firstName,middleName, lastName,  parentId,email,currentClassId,home, admissionDate, clearanceDate, dateOfBirth,activeState) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO sims.students  (   id,full_name, admission_number,date_of_birth, active,  admission_date,created_at,image_src) VALUES(?,?,?,?,?,?,?)";
 
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, studentId);
-            pstmt.setString(2, firstName);
-            pstmt.setString(3, middleName);
-            pstmt.setString(4, lastName);
-            pstmt.setString(5, parentId);
-            pstmt.setString(6, email);
-            pstmt.setString(7, currentClassId);
-            pstmt.setString(8, home);
-            pstmt.setDate(9, java.sql.Date.valueOf(admissionDate));
-            pstmt.setDate(10, java.sql.Date.valueOf(clearanceDate));
-            pstmt.setDate(11, java.sql.Date.valueOf(dateOfBirth));
-            pstmt.setString(12, activeState);
+            pstmt.setInt(1, studentId);
+            pstmt.setString(2, fullName);
+            pstmt.setString(3, admissionNumber);
+            pstmt.setDate(4, java.sql.Date.valueOf(dateOfBirth));
+            pstmt.setInt(5, activeState);
+            pstmt.setString(6, LocalDate.now().toString());
+            pstmt.setDate(7, java.sql.Date.valueOf(LocalDate.now()));
+            pstmt.setString(3, " no image");
 
 
             pstmt.executeUpdate();
@@ -90,43 +77,48 @@ public class saveStudent implements Runnable {
 
     @Override
     public void run() {
-        PreparedStatement pstmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-
-        try {
-            conn = currentDb.sqlite_connect();
-            lock.lock();
-            Thread.sleep(1000);
-            String sql = "INSERT INTO students (   studentId, firstName,middleName, lastName,  parentId,email,currentClassId,home, admissionDate, clearanceDate, dateOfBirth,activeState) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
-
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, studentId);
-            pstmt.setString(2, firstName);
-            pstmt.setString(3, middleName);
-            pstmt.setString(4, lastName);
-            pstmt.setString(5, parentId);
-            pstmt.setString(6, email);
-            pstmt.setString(7, currentClassId);
-            pstmt.setString(8, home);
-            pstmt.setDate(9, java.sql.Date.valueOf(admissionDate));
-            pstmt.setDate(10, java.sql.Date.valueOf(clearanceDate));
-            pstmt.setDate(11, java.sql.Date.valueOf(dateOfBirth));
-            pstmt.setString(12, activeState);
+        savetoMysql();
+    }
 
 
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-
-            System.out.println(e.getMessage());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            DbUtils.closeQuietly(rs);
-            DbUtils.closeQuietly(pstmt);
-            DbUtils.closeQuietly(conn);
-            lock.unlock();
-        }
+    public void savetoSql() {
+//        PreparedStatement pstmt = null;
+//        Connection conn = null;
+//        ResultSet rs = null;
+//
+//        try {
+//            conn = currentDb.sqlite_connect();
+//            lock.lock();
+//            Thread.sleep(1000);
+//            String sql = "INSERT INTO students (   studentId, firstName,middleName, lastName,  parentId,email,currentClassId,home, admissionDate, clearanceDate, dateOfBirth,activeState) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+//
+//            pstmt = conn.prepareStatement(sql);
+//            pstmt.setString(1, studentId);
+//            pstmt.setString(2, firstName);
+//            pstmt.setString(3, middleName);
+//            pstmt.setString(4, lastName);
+//            pstmt.setString(5, parentId);
+//            pstmt.setString(6, email);
+//            pstmt.setString(7, currentClassId);
+//            pstmt.setString(8, home);
+//            pstmt.setDate(9, java.sql.Date.valueOf(admissionDate));
+//            pstmt.setDate(10, java.sql.Date.valueOf(clearanceDate));
+//            pstmt.setDate(11, java.sql.Date.valueOf(dateOfBirth));
+//            pstmt.setString(12, activeState);
+//
+//
+//            pstmt.executeUpdate();
+//        } catch (SQLException e) {
+//
+//            System.out.println(e.getMessage());
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } finally {
+//            DbUtils.closeQuietly(rs);
+//            DbUtils.closeQuietly(pstmt);
+//            DbUtils.closeQuietly(conn);
+//            lock.unlock();
+//        }
     }
 }
 
